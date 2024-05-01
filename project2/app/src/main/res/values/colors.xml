@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="sec_color">#9BC8F2</color>
+    <color name="lb_text_color">#626262</color>
+    <color name="et_background">#F5F5F5</color>
+    <color name="et_hint">#C9C9C9</color>
+    <color name="dark_blue_text">#1F2156</color>
+    <color name="appOrange">#E34918</color>
+    <color name="iconPress">#676767</color>
+    <color name="star">#D7A31C</color>
+    <color name="red">#FF0000</color>
+    <color name="bt_color_1">#1877F2</color>
+    <color name="bt_color_2">#FFC107</color>
+</resources>
