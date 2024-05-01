@@ -1,9 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectRegistrationRole">
+    tools:context=".MainActivity"
+    android:background="@color/white"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/bookMeLogo"
+        android:layout_width="241dp"
+        android:layout_height="232dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80sp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/lbRegisterAs"
+        style="@style/label_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookMeLogo"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20sp"
+        android:layout_marginBottom="20sp"
+        android:text="Register as" />
+
+
+    <Button
+        android:id="@+id/btPlayer"
+        style="@style/button_2"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:layout_below="@id/lbRegisterAs"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:text="Player"
+        android:textSize="18sp" />
+
+
+    <Button
+        android:id="@+id/btAdmin"
+        style="@style/button_1"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:layout_below="@id/btPlayer"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:text="Admin"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        style="@style/label_color2"
+        android:id="@+id/tv_already_have_account"
+        android:text="Already have an account?"
+        android:layout_below="@id/btAdmin"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="100dp"
+        />
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        style="@style/label_color3"
+        android:id="@+id/tv_already_have_account_click_here"
+        android:text="Click here"
+        android:layout_below="@id/btAdmin"
+        android:layout_alignRight="@id/btAdmin"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+
+        />
+
+</RelativeLayout>

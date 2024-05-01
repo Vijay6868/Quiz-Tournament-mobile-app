@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello! Register to get started!"
+        style="@style/label_heading"
+        android:id="@+id/lbHeading_login"
+        android:padding="40dp"
+        android:layout_marginTop="50dp"
+        />
+
+    <EditText
+        android:id="@+id/tbUsername_login"
+        style="@style/et_Text"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/lbHeading_login"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="Username"
+        android:textColorHint="@color/et_hint" />
+
+    <EditText
+        android:id="@+id/tbPassword_login"
+        style="@style/et_Text"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tbUsername_login"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/et_hint" />
+
+    <EditText
+        android:id="@+id/tbConfirmPassword"
+        style="@style/et_Text"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tbPassword_login"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="Confrim Password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/et_hint" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:id="@+id/lbForgotPassword"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"
+        android:layout_marginTop="50dp"
+        android:layout_alignRight="@id/tbConfirmPassword"
+        android:layout_below="@id/tbConfirmPassword"/>
+    <TextView
+        android:id="@+id/wlb_uname"
+        style="@style/red_warn"
+        android:layout_toEndOf="@+id/tbUsername_login"
+        android:layout_marginTop="280dp"/>
+
+    <TextView
+        android:id="@+id/wlb_password"
+        style="@style/red_warn"
+        android:layout_toEndOf="@+id/tbUsername_login"
+        android:layout_marginTop="350dp"/>
+    <TextView
+        android:id="@+id/wlb_confirm_password"
+        style="@style/red_warn"
+        android:layout_toEndOf="@+id/tbUsername_login"
+        android:layout_marginTop="420dp"/>
+
+    <Button
+        android:id="@+id/btLogin"
+        style="@style/button_3"
+        android:layout_width="300sp"
+        android:layout_height="50sp"
+        android:layout_below="@id/lbForgotPassword"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="60sp"
+        android:text="Register"
+        android:textSize="18sp" />
+
+</RelativeLayout>

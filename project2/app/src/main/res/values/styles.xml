@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="secButton">
+        <item name="android:textSize">18sp</item>
+        <item name="android:backgroundTint">#FFFFFFFF</item>
+        <item name="textFillColor">@color/sec_color</item>
+        <item name="strokeColor">@color/sec_color</item>
+    </style>
+    <style name="categoryButton">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:backgroundTint">#FFFFFFFF</item>
+        <item name="textFillColor">@color/sec_color</item>
+        <item name="strokeColor">@color/sec_color</item>
+    </style>
+    <style name="label_color">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/lb_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="label_color2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/lb_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="label_color3">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/sec_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="label_heading">
+        <item name="android:textSize">34sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="et_Text">
+        <item name="hintTextColor">@color/et_hint</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="CardImage" parent="Widget.AppCompat.ImageButton">
+        <item name="android:scaleType">centerInside</item>
+    </style>
+    <style name="btdealAndCat">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="button_1">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_button_1</item>
+    </style>
+    <style name="button_2">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_button_2</item>
+    </style>
+    <style name="button_3">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_button_3</item>
+    </style>
+    <style name="liteBlueButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/sec_color</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@drawable/bg_outline_1</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="user_details_icon">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+    <style name="user_details_icon_2">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+    <style name="user_details">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+    <style name="highlights_sec_text">
+        <item name="android:textStyle"></item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingBottom">7dp</item>
+    </style>
+    <style name="red_warn">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:text">!</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:visibility">visible</item>
+    </style>
+    <style name="AppTheme.A_Register" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/bt_color_1</item>
+    </style>
+
+
+</resources>

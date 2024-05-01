@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_outline_1"
+    app:cardCornerRadius="40dp"
+    android:elevation="20dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:id="@+id/rv_carditems"
+    android:layout_marginTop="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bt_color_2">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="154dp"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="35dp"
+            android:id="@+id/innerCard">
+
+            <ImageView
+                android:id="@+id/card_img"
+                android:layout_width="wrap_content"
+                android:layout_height="154dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cardimg1"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/listingTitle"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Pure Milford Sound Cruise"
+            android:layout_below="@+id/innerCard"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginLeft="30dp"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap for more details"
+            android:textColor="@color/black"
+            android:layout_below="@+id/listingTitle"
+            android:textSize="16sp"
+            android:layout_marginLeft="30dp"
+            android:textStyle="italic"
+            android:layout_marginTop="2dp"/>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$89"
+            android:textColor="@color/black"
+            android:layout_below="@id/innerCard"
+            android:layout_alignRight="@id/innerCard"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
