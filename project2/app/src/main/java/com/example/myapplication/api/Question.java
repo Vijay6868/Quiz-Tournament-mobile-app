@@ -11,15 +11,40 @@ package com.example.myapplication.api;
         "July 2, 1776"
         ]*/
 
-public class Question {
-    String question;
-    String correctAns;
-    String wrongAns;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Question(String question, String correctAns, String wrongAns) {
-        this.question = question;
-        this.correctAns = correctAns;
-        this.wrongAns = wrongAns;
+
+public class Question {
+    String type;
+    String difficulty;
+    String category;
+    String question;
+    String correct_answer;
+    List<String> incorrect_answers;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getQuestion() {
@@ -30,28 +55,31 @@ public class Question {
         this.question = question;
     }
 
-    public String getCorrectAns() {
-        return correctAns;
+    public String getCorrect_answer() {
+        return correct_answer;
     }
 
-    public void setCorrectAns(String correctAns) {
-        this.correctAns = correctAns;
+    public void setCorrect_answer(String correct_answer) {
+        this.correct_answer = correct_answer;
     }
 
-    public String getWrongAns() {
-        return wrongAns;
+    public List<String> getIncorrect_answers() {
+        return incorrect_answers;
     }
 
-    public void setWrongAns(String wrongAns) {
-        this.wrongAns = wrongAns;
+    public void setIncorrect_answers(ArrayList<String> incorrect_answers) {
+        this.incorrect_answers = incorrect_answers;
     }
 
     @Override
     public String toString() {
         return "Question{" +
-                "question='" + question + '\'' +
-                ", correctAns='" + correctAns + '\'' +
-                ", wrongAns='" + wrongAns + '\'' +
+                "type='" + type + '\'' +
+                ", difficulty='" + difficulty + '\'' +
+                ", category='" + category + '\'' +
+                ", question='" + question + '\'' +
+                ", correct_answer='" + correct_answer + '\'' +
+                ", incorrect_answers=" + incorrect_answers +
                 '}';
     }
 }

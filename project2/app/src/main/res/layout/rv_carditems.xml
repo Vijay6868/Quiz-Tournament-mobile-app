@@ -54,17 +54,6 @@
             android:layout_marginLeft="30dp"
             android:textStyle="italic"
             android:layout_marginTop="2dp"/>
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$89"
-            android:textColor="@color/black"
-            android:layout_below="@id/innerCard"
-            android:layout_alignRight="@id/innerCard"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"/>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

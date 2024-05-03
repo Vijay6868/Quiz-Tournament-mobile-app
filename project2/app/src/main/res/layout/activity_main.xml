@@ -74,5 +74,12 @@
         android:layout_marginTop="100dp"
 
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btAdmin"
+        android:layout_centerHorizontal="true"
+        android:text="loaddata"
+        android:onClick="loaddata"/>
 
 </RelativeLayout>
