@@ -131,7 +131,7 @@
         <item name="background">@drawable/edit_text_background</item>
     </style>
     <style name="start_date_picker">
-        <item name="hintTextColor">@color/et_hint</item>
+
         <item name="android:textSize">18sp</item>
         <item name="android:layout_width">140dp</item>
         <item name="android:layout_marginTop">20dp</item>

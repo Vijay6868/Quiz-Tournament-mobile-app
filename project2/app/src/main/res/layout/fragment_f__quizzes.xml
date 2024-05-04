@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".F_Quizzes">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Spinner
+            android:layout_marginTop="20dp"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_button_1"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/sp_quizzes"/>
+
+        <FrameLayout
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/sp_quizzes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/main_frame_av_de"/>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

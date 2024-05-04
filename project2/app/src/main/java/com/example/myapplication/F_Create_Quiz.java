@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -61,12 +61,15 @@ public class F_Create_Quiz extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    //===========================
     Spinner sp_difficulty, sp_question_type, sp_category;
+    TextView start_date, end_date;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.f__create__quiz, container, false);
+        View view = inflater.inflate(R.layout.fragment__create__quiz, container, false);
         sp_difficulty = view.findViewById(R.id.spin_difficulty);
         return view;
     }
@@ -90,5 +93,9 @@ public class F_Create_Quiz extends Fragment {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,options);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+    }
+    public void handleDateSelection(){
+        start_date = (TextView) getView().findViewById(R.id.start_date);
+        end_date = (TextView) getView().findViewById(R.id.start_date);
     }
 }

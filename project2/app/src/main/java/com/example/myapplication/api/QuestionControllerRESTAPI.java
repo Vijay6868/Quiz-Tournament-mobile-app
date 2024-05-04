@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 public class QuestionControllerRESTAPI implements retrofit2.Callback<Questions>{
 
-    final String BASE_URL = "https://opentdb.com/";
+    final String BASE_URL = "https://opentdb.com";
     private Questions questions;
     public void start(){
         Retrofit retrofit = new Retrofit.Builder()
@@ -26,6 +26,8 @@ public class QuestionControllerRESTAPI implements retrofit2.Callback<Questions>{
     public void onResponse(Call<Questions> call, Response<Questions> response) {
         if(response.isSuccessful()){
             questions = response.body();
+            String jsonResponse = response.raw().toString();
+            Log.d("RAW_JSON_RESPONSE", jsonResponse);
             Log.d("QUESTIONS_COUNT"," QUESTION :"+ questions.data.size());
             List<Question> questionList = questions.getData();
 

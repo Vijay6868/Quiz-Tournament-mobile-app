@@ -14,6 +14,7 @@
         style="@style/label_heading"
         android:id="@+id/lbHeading_login"
         android:padding="40dp"
+        android:layout_marginTop="20dp"
 
         />
 
@@ -55,24 +56,54 @@
         android:drawableRight="@drawable/ic_calendar"
         android:hint="Start Date"
         android:padding="10dp"
-        android:id="@+id/start_date"/>
+        android:id="@+id/start_date"
+        android:layout_marginLeft="40dp"
+        android:textColorHint="@color/et_hint"/>
 
     <TextView
-        android:id="@+id/wlb_uname"
+        style="@style/start_date_picker"
+        android:background="@drawable/edit_text_background"
+        android:layout_below="@+id/spin_category"
+        android:drawableRight="@drawable/ic_calendar"
+        android:hint="End Date"
+        android:padding="10dp"
+        android:id="@+id/end_date"
+        android:layout_marginLeft="220dp"
+        android:textColorHint="@color/et_hint"/>
+
+    <TextView
+        android:id="@+id/wlb_quiz_name"
+        style="@style/red_warn"
+        android:layout_toEndOf="@+id/tbTitle"
+        android:layout_marginTop="210dp"/>
+
+    <TextView
+        android:id="@+id/wlb_difficulty"
         style="@style/red_warn"
         android:layout_toEndOf="@+id/tbTitle"
         android:layout_marginTop="280dp"/>
 
     <TextView
-        android:id="@+id/wlb_password"
+        android:id="@+id/wlb_ques_type"
         style="@style/red_warn"
         android:layout_toEndOf="@+id/tbTitle"
         android:layout_marginTop="350dp"/>
     <TextView
-        android:id="@+id/wlb_confirm_password"
+        android:id="@+id/wlb_category"
         style="@style/red_warn"
         android:layout_toEndOf="@+id/tbTitle"
         android:layout_marginTop="420dp"/>
+
+    <TextView
+        android:id="@+id/wlb_start_date"
+        style="@style/red_warn"
+        android:layout_toEndOf="@+id/start_date"
+        android:layout_marginTop="490dp"/>
+    <TextView
+        android:id="@+id/wlb_end_date"
+        style="@style/red_warn"
+        android:layout_toEndOf="@+id/tbTitle"
+        android:layout_marginTop="490dp"/>
 
     <Button
         android:id="@+id/btLogin"

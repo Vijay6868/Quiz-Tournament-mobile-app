@@ -11,17 +11,27 @@ package com.example.myapplication.api;
         "July 2, 1776"
         ]*/
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 public class Question {
+
     String type;
     String difficulty;
     String category;
     String question;
     String correct_answer;
     List<String> incorrect_answers;
+
+    public Question(String type, String difficulty, String category, String question, String correct_answer, List<String> incorrect_answers) {
+        this.type = type;
+        this.difficulty = difficulty;
+        this.category = category;
+        this.question = question;
+        this.correct_answer = correct_answer;
+        this.incorrect_answers = incorrect_answers;
+    }
 
     public String getType() {
         return type;
@@ -67,7 +77,7 @@ public class Question {
         return incorrect_answers;
     }
 
-    public void setIncorrect_answers(ArrayList<String> incorrect_answers) {
+    public void setIncorrect_answers(List<String> incorrect_answers) {
         this.incorrect_answers = incorrect_answers;
     }
 
