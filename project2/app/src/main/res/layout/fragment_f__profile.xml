@@ -6,9 +6,110 @@
     tools:context=".F_Profile">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/rl_1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/lb_my_details"
+            style="@style/label_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            android:text="My Details" />
+
+        <ImageView
+            android:id="@+id/ic_profile"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_profile"
+            android:layout_below="@id/lb_my_details"
+            android:layout_marginLeft="20dp"
+            />
+        <TextView
+            android:id="@+id/lb_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JohnDoe"
+            style="@style/label_color"
+            android:layout_toRightOf="@id/ic_profile"
+            android:layout_below="@id/lb_my_details"
+            android:layout_marginTop="10dp"
+            android:textSize="26dp"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:id="@+id/ic_user_type"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/lb_full_name"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/ic_profile"
+            android:src="@drawable/ic_usertype" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player"
+            android:textColor="@color/black"
+            android:layout_below="@+id/lb_full_name"
+            android:layout_toRightOf="@+id/ic_user_type"
+            android:layout_marginTop="12dp"
+            android:textSize="18sp"
+            android:id="@+id/lb_userType"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ic_profile"
+            android:paddingTop="20dp">
+            <ImageView
+                android:id="@+id/ic_mail"
+                style="@style/user_details_icon"
+                android:src="@drawable/ic_mail"/>
+            <TextView
+                android:id="@+id/lb_email"
+                style="@style/user_details"
+                android:text="JohnDoe@gmail.com"
+                android:layout_toRightOf="@id/ic_mail"/>
+            <ImageView
+                android:id="@+id/ic_password"
+                style="@style/user_details_icon"
+                android:src="@drawable/ic_change_password"
+                android:layout_below="@id/ic_mail"/>
+            <TextView
+                android:id="@+id/lb_bookings"
+                style="@style/user_details"
+                android:text="Change Password"
+                android:layout_toRightOf="@id/ic_password"
+                android:layout_below="@id/lb_email"
+                android:layout_marginTop="16dp"/>
+
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_marginTop="600dp"
+                android:id="@+id/ic_logout"
+                style="@style/user_details_icon"
+                android:src="@drawable/ic_log_out"/>
+
+            <TextView
+                android:id="@+id/lb_logOut"
+                style="@style/user_details"
+                android:text="Log out"
+                android:layout_toRightOf="@id/ic_logout"
+
+                android:layout_marginTop="600dp"/>
+
+        </RelativeLayout>
+
 
 </FrameLayout>
