@@ -36,7 +36,7 @@ public class A_Register extends AppCompatActivity {
         btRegister = findViewById(R.id.btRegister);
 
         w_cpassword = findViewById(R.id.wlb_confirm_password);
-        w_cpassword = findViewById(R.id.wlb_password);
+        w_password = findViewById(R.id.wlb_password);
         w_uname = findViewById(R.id.wlb_uname);
 
         auth = FirebaseAuth.getInstance();
@@ -53,18 +53,12 @@ public class A_Register extends AppCompatActivity {
                  _password = password.getText().toString();
                  _cpassword = cpassword.getText().toString();
 
+                 boolean check = validateInputs();
 
-                if(TextUtils.isEmpty(_email)){
-                    w_uname.setVisibility(View.VISIBLE);
-                } else if (TextUtils.isEmpty(_password) && (_password.length()<4)) {
-                    w_uname.setVisibility(View.VISIBLE);
-                }
-                else if(TextUtils.isEmpty(_cpassword) || !_password.equals(_cpassword)){
-                    w_cpassword.setVisibility(View.VISIBLE);
-                }
-                else{
-                    registerPlayer();
-                }
+
+               if(check){
+                   registerPlayer();
+               }
             }
         });
     }
@@ -81,6 +75,33 @@ public class A_Register extends AppCompatActivity {
                 }
             }
         });
+    }
+    public boolean validateInputs(){
+
+        Validator validator = new Validator();
+        boolean isValid = true;
+
+        if (!validator.isValidEmail(_email)) {
+            w_uname.setVisibility(View.VISIBLE);
+            isValid = false;
+        } else {
+            w_uname.setVisibility(View.GONE);
+        }
+        if (!validator.isValidPassword(_password)) {
+            w_password.setVisibility(View.VISIBLE);
+            isValid = false;
+        } else {
+            w_password.setVisibility(View.GONE);
+        }
+        // Validate confirm password.
+        if(!validator.isValidMatch(_password,_cpassword)){
+            w_cpassword.setVisibility(View.VISIBLE);
+            isValid = false;
+        } else{
+            w_cpassword.setVisibility(View.GONE);
+        }
+
+        return isValid;
     }
 
 }
