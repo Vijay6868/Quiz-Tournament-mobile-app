@@ -18,7 +18,7 @@
         />
 
     <EditText
-        android:id="@+id/tbUsername_login"
+        android:id="@+id/tbUsername"
         style="@style/et_Text"
         android:layout_width="320dp"
         android:layout_height="50dp"
@@ -26,15 +26,15 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="60dp"
         android:background="@drawable/edit_text_background"
-        android:hint="Username"
+        android:hint="Email"
         android:textColorHint="@color/et_hint" />
 
     <EditText
-        android:id="@+id/tbPassword_login"
+        android:id="@+id/tbPassword"
         style="@style/et_Text"
         android:layout_width="320dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/tbUsername_login"
+        android:layout_below="@+id/tbUsername"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_background"
@@ -47,7 +47,7 @@
         style="@style/et_Text"
         android:layout_width="320dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/tbPassword_login"
+        android:layout_below="@+id/tbPassword"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_background"
@@ -67,22 +67,22 @@
     <TextView
         android:id="@+id/wlb_uname"
         style="@style/red_warn"
-        android:layout_toEndOf="@+id/tbUsername_login"
+        android:layout_toEndOf="@+id/tbUsername"
         android:layout_marginTop="280dp"/>
 
     <TextView
         android:id="@+id/wlb_password"
         style="@style/red_warn"
-        android:layout_toEndOf="@+id/tbUsername_login"
+        android:layout_toEndOf="@+id/tbUsername"
         android:layout_marginTop="350dp"/>
     <TextView
         android:id="@+id/wlb_confirm_password"
         style="@style/red_warn"
-        android:layout_toEndOf="@+id/tbUsername_login"
+        android:layout_toEndOf="@+id/tbUsername"
         android:layout_marginTop="420dp"/>
 
     <Button
-        android:id="@+id/btLogin"
+        android:id="@+id/btRegister"
         style="@style/button_3"
         android:layout_width="300sp"
         android:layout_height="50sp"
