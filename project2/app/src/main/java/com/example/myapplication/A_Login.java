@@ -10,41 +10,75 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class A_Login extends AppCompatActivity {
     EditText username, password;
     Button btlogin;
     String _username, _password,_userType;
-    TextView wusername, wpassword;
+    TextView w_username, w_password;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        auth = FirebaseAuth.getInstance();
+
+        loginInput();
+        loginAlert();
+        handleLoginButton();
     }
     public void loginInput(){
         username = findViewById(R.id.tbUsername_login);
         password = findViewById(R.id.tbPassword_login);
-        _username = username.getText().toString();
-        _password = password.getText().toString();
+
     }
     public void loginAlert(){
-        wusername = findViewById(R.id.wlb_uname);
-        wpassword = findViewById(R.id.wlb_password);
+        w_username = findViewById(R.id.wlb_uname);
+        w_password = findViewById(R.id.wlb_password);
     }
     public void handleLoginButton(){
         btlogin = findViewById(R.id.btLogin);
         btlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* loginInput();
-                boolean checkLogin = validateLogin();
-                if(checkLogin){*/
-                   /* Intent intent = new Intent(A_Login.this, C_homeScreen.class);
-                    startActivity(intent);*/
-                /*}
-                else {
-                    Toast.makeText(Login.this, "invalid credentials or user don't exist", Toast.LENGTH_SHORT).show();
-                }*/
+                _username = username.getText().toString();
+                _password = password.getText().toString();
+                boolean check = validateInputs();
+                if(check){
+                    auth.signInWithEmailAndPassword(_username,_password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Intent intent = new Intent(A_Login.this, A_Home.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+
             }
         });
+    }
+    public boolean validateInputs() {
+
+        Validator validator = new Validator();
+        boolean isValid = true;
+
+        if (!validator.isValidEmail(_username)) {
+            w_username.setVisibility(View.VISIBLE);
+            isValid = false;
+        } else {
+            w_username.setVisibility(View.GONE);
+        }
+        if (!validator.isValidPassword(_password)) {
+            w_password.setVisibility(View.VISIBLE);
+            isValid = false;
+        } else {
+            w_password.setVisibility(View.GONE);
+        }
+
+
+        return isValid;
     }
 }
