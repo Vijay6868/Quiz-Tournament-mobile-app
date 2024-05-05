@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".F_Quiz_Details">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/bt_color_3"
+        android:id="@+id/l1"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/cardimg2"
+            android:scaleType="centerCrop"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/l2"
+        android:layout_below="@+id/l1"
+        >
+        <EditText
+            android:id="@+id/tbTitle"
+            style="@style/et_Text"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/edit_text_background"
+            android:hint="Quiz Name"
+            android:textColorHint="@color/et_hint" />
+        <TextView
+
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/spin_difficulty"
+            android:layout_below="@+id/tbTitle"
+            style="@style/app_spinner"
+            />
+
+        <TextView
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/spin_ques_type"
+            android:layout_below="@+id/spin_difficulty"
+            style="@style/app_spinner"/>
+
+        <TextView
+            android:background="@drawable/edit_text_background"
+            android:id="@+id/spin_category"
+            android:layout_below="@+id/spin_ques_type"
+            style="@style/app_spinner"/>
+        <TextView
+            style="@style/start_date_picker"
+            android:background="@drawable/edit_text_background"
+            android:layout_below="@+id/spin_category"
+            android:drawableRight="@drawable/ic_calendar"
+            android:hint="Start Date"
+            android:padding="10dp"
+            android:id="@+id/start_date"
+            android:layout_marginLeft="40dp"
+            android:textColorHint="@color/et_hint"/>
+
+        <TextView
+            style="@style/start_date_picker"
+            android:background="@drawable/edit_text_background"
+            android:layout_below="@+id/spin_category"
+            android:drawableRight="@drawable/ic_calendar"
+            android:hint="End Date"
+            android:padding="10dp"
+            android:id="@+id/end_date"
+            android:layout_marginLeft="220dp"
+            android:textColorHint="@color/et_hint"/>
+
+        <TextView
+            android:id="@+id/wlb_quiz_name"
+            style="@style/red_warn"
+            android:layout_toEndOf="@+id/tbTitle"
+            android:layout_marginTop="20dp"/>
+
+
+        <TextView
+            android:id="@+id/wlb_start_date"
+            style="@style/red_warn"
+            android:layout_toEndOf="@+id/start_date"
+            android:layout_marginTop="300dp"/>
+        <TextView
+            android:id="@+id/wlb_end_date"
+            style="@style/red_warn"
+            android:layout_toEndOf="@+id/tbTitle"
+            android:layout_marginTop="300dp"/>
+
+        <Button
+            android:id="@+id/btStart"
+            style="@style/button_3_half"
+            android:layout_below="@id/start_date"
+            android:layout_marginTop="60dp"
+            android:text="Start"
+            android:textSize="18sp"
+            android:layout_alignLeft="@id/start_date"/>
+
+        <Button
+            android:id="@+id/btClose"
+            style="@style/button_4_half"
+            android:layout_below="@id/start_date"
+            android:layout_marginTop="60dp"
+            android:text="Close"
+            android:layout_alignRight="@id/end_date"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
