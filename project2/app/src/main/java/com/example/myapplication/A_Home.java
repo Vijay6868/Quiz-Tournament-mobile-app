@@ -35,7 +35,7 @@ public class A_Home extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Profile()).commit();
                 }
                 else if (itemId == R.id.nav_completed) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Completed()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Quiz()).commit();
                 }
 
                 return true;

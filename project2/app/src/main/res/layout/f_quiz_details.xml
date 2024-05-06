@@ -8,14 +8,24 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="@color/bt_color_3"
+        android:background="@drawable/cardimg2"
         android:id="@+id/l1"
         >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/cardimg2"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:id="@+id/image"/>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_delete"
+            android:layout_margin="10dp"
+            android:elevation="50dp"
+            android:background="@color/white"
+            android:layout_alignRight="@+id/image"
+            android:id="@+id/btDelete"/>
 
     </RelativeLayout>
     <RelativeLayout
