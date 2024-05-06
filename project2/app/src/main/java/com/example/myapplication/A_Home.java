@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class A_Home extends AppCompatActivity {
     FrameLayout frameLayout;
@@ -16,6 +17,9 @@ public class A_Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase.getInstance().getReference().child("Vendor1").setValue("ram");
 
         frameLayout = findViewById(R.id.main_frame);
         navBar = findViewById(R.id.nav_bar);

@@ -11,11 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 
@@ -80,22 +76,9 @@ public class F_Quiz extends Fragment {
         ArrayAdapter<String> adpater = new ArrayAdapter<String>(getContext(),R.layout.list_item,list);
         listView.setAdapter(adpater);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Languages");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for(DataSnapshot snapshot1 : snapshot.getChildren()){
-                    list.add(snapshot1.getValue().toString());
-                }
-                adpater.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+
         list.size();
         return view;
     }

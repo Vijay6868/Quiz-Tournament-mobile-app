@@ -9,16 +9,26 @@ public class Quiz {
     int quiz_id;
     Date sdate,edate;
     Questions questions;
+    int likes;
 
     public Quiz(String qname, Date sdate, Date edate, Questions questions) {
         this.qname = qname;
         this.sdate = sdate;
         this.edate = edate;
         this.questions = questions;
+        likes =0;
 
         Random random = new Random();
         quiz_id = random.nextInt(100);
 
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
     public String getQname() {
