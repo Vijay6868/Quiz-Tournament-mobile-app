@@ -1,4 +1,4 @@
-package com.example.myapplication.quizandplayer;
+package com.example.myapplication.quizAndUsers;
 
 import com.example.myapplication.api.Questions;
 
