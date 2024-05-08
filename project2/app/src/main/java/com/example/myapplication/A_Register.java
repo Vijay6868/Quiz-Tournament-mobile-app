@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -29,8 +30,9 @@ public class A_Register extends AppCompatActivity {
     EditText email, password, cpassword;
     TextView w_uname, w_password, w_cpassword;
     private FirebaseAuth auth;
-    String _email, _password, _cpassword, uid;
-    int quiz_completed=0;
+    String _email, _password, _cpassword, uid, _userType;
+    ArrayList<String> quiz_completed;
+    ArrayList<String> quiz_created;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,13 @@ public class A_Register extends AppCompatActivity {
         w_uname = findViewById(R.id.wlb_uname);
 
         auth = FirebaseAuth.getInstance();
+
+        _userType = getIntent().getStringExtra("userType");
+
+        quiz_completed = new ArrayList<>();
+        quiz_created = new ArrayList<>();
+        quiz_created.add("quiz1");
+        quiz_completed.add("quiz1");
 
         handBtRegister();
 
@@ -77,17 +86,26 @@ public class A_Register extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(A_Register.this, "User Registered", Toast.LENGTH_SHORT).show();
-                    //Intent intent = new Intent(A_Register.this, MainActivity.class);
+
 
                     FirebaseUser user = auth.getCurrentUser();
 
                     if (user != null) {
                         // User is signed in
                         uid = user.getUid();
-                        HashMap<String, Object> m=new HashMap<String, Object>();
-                        m.put("quizzes_completed",quiz_completed);
-                        FirebaseDatabase.getInstance().getReference().child("Players").child(uid).setValue(m);
-                        //startActivity(intent);
+
+                        HashMap<String, Object> m= new HashMap<>();
+                        if(_userType.equals("Admins")){
+                            m.put("quizzes_created", quiz_created);
+                        }
+                        else{
+                            m.put("quizzes_completed",quiz_completed);
+                        }
+
+                        FirebaseDatabase.getInstance().getReference().child(_userType).child(uid).setValue(m);
+
+                        Intent intent = new Intent(A_Register.this, MainActivity.class);
+                        startActivity(intent);
                         //Log.d("UID", uid);
                     } else {
                         // No user is signed in

@@ -30,7 +30,7 @@ public class A_SelectRegistrationRole extends AppCompatActivity {
             public void onClick(View v) {
                 // Launch the Login activity and pass user type as an extra
                 Intent intent = new Intent(A_SelectRegistrationRole.this, A_Register.class);
-                intent.putExtra("userType", "player");
+                intent.putExtra("userType", "Players");
                 startActivity(intent);
             }
         });
@@ -42,7 +42,7 @@ public class A_SelectRegistrationRole extends AppCompatActivity {
             public void onClick(View v) {
                 // Launch the Login activity and pass user type as an extra
                 Intent intent = new Intent(A_SelectRegistrationRole.this, A_Register.class);
-                intent.putExtra("userType", "admin");
+                intent.putExtra("userType", "Admins");
                 startActivity(intent);
             }
         });

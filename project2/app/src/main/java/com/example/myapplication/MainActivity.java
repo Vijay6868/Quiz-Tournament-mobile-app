@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         btAdmin();
         btPlayer();
 
-       // FirebaseDatabase database = FirebaseDatabase.getInstance();
-       // FirebaseDatabase.getInstance().getReference().child("Users").child("user1").child("uid").setValue("101");
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+       //FirebaseDatabase.getInstance().getReference().child("Users").child("user1").child("uid").setValue("101");
 
 
     }
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Launch the Login activity and pass user type as an extra
                 Intent intent = new Intent(MainActivity.this, A_Login.class);
-                intent.putExtra("userType", "player");
+                intent.putExtra("userType", "Players");
                 startActivity(intent);
             }
         });
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Launch the Login activity and pass user type as an extra
                 Intent intent = new Intent(MainActivity.this, A_Login.class);
-                intent.putExtra("userType", "admin");
+                intent.putExtra("userType", "Admins");
                 startActivity(intent);
             }
         });

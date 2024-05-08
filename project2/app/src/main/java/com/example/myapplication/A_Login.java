@@ -26,6 +26,8 @@ public class A_Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         auth = FirebaseAuth.getInstance();
 
+        _userType = getIntent().getStringExtra("userType");
+
         loginInput();
         loginAlert();
         handleLoginButton();
