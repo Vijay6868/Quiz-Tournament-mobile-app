@@ -18,8 +18,7 @@ public class A_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        FirebaseDatabase.getInstance().getReference().child("Vendor1").setValue("ram");
+
 
         frameLayout = findViewById(R.id.main_frame);
         navBar = findViewById(R.id.nav_bar);

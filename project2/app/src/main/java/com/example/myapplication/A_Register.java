@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,13 +18,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 public class A_Register extends AppCompatActivity {
     Button btRegister;
     EditText email, password, cpassword;
     TextView w_uname, w_password, w_cpassword;
     private FirebaseAuth auth;
-    String _email, _password, _cpassword;
+    String _email, _password, _cpassword, uid;
+    int quiz_completed=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +65,7 @@ public class A_Register extends AppCompatActivity {
 
                if(check){
                    registerPlayer();
+
                }
             }
         });
@@ -69,8 +77,24 @@ public class A_Register extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(A_Register.this, "User Registered", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(A_Register.this, MainActivity.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(A_Register.this, MainActivity.class);
+
+                    FirebaseUser user = auth.getCurrentUser();
+
+                    if (user != null) {
+                        // User is signed in
+                        uid = user.getUid();
+                        HashMap<String, Object> m=new HashMap<String, Object>();
+                        m.put("quizzes_completed",quiz_completed);
+                        FirebaseDatabase.getInstance().getReference().child("Players").child(uid).setValue(m);
+                        //startActivity(intent);
+                        //Log.d("UID", uid);
+                    } else {
+                        // No user is signed in
+                        Log.d("UID", "No user signed in");
+                    }
+
+
                 }
                 else {
                     Toast.makeText(A_Register.this, "Error occurred!", Toast.LENGTH_SHORT).show();

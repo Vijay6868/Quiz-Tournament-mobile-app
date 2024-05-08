@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.myapplication.api.QuestionControllerRESTAPI;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         clickHere();
         btAdmin();
         btPlayer();
+
+       // FirebaseDatabase database = FirebaseDatabase.getInstance();
+       // FirebaseDatabase.getInstance().getReference().child("Users").child("user1").child("uid").setValue("101");
+
 
     }
     public void clickHere(){
