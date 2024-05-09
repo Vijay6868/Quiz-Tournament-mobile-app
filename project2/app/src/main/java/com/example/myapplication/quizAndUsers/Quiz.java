@@ -1,7 +1,5 @@
 package com.example.myapplication.quizAndUsers;
 
-import com.example.myapplication.api.Questions;
-
 import java.util.Date;
 import java.util.Random;
 public class Quiz {

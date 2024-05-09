@@ -1,30 +1,30 @@
 package com.example.myapplication.api;
 
-/*"type": "multiple",
-        "difficulty": "medium",
-        "category": "General Knowledge",
-        "question": "When was the Declaration of Independence approved by the Second Continental Congress?",
-        "correct_answer": "July 4, 1776",
-        "incorrect_answers": [
-        "May 4, 1776",
-        "June 4, 1776",
-        "July 2, 1776"
-        ]*/
 
+import org.json.JSONArray;
 
-import java.util.List;
-
-
-public class Question {
+/*      {
+              "type": "multiple",
+              "difficulty": "medium",
+              "category": "General Knowledge",
+              "question": "This field is sometimes known as &ldquo;The Dismal Science.&rdquo;",
+              "correct_answer": "Economics",
+              "incorrect_answers": [
+              "Philosophy",
+              "Politics",
+              "Physics"
+              ]
+              },*/
+public class QuestionModel {
 
     String type;
     String difficulty;
     String category;
     String question;
     String correct_answer;
-    List<String> incorrect_answers;
+    JSONArray incorrect_answers;
 
-    public Question(String type, String difficulty, String category, String question, String correct_answer, List<String> incorrect_answers) {
+    public QuestionModel(String type, String difficulty, String category, String question, String correct_answer, JSONArray incorrect_answers) {
         this.type = type;
         this.difficulty = difficulty;
         this.category = category;
@@ -73,23 +73,11 @@ public class Question {
         this.correct_answer = correct_answer;
     }
 
-    public List<String> getIncorrect_answers() {
+    public JSONArray getIncorrect_answers() {
         return incorrect_answers;
     }
 
-    public void setIncorrect_answers(List<String> incorrect_answers) {
+    public void setIncorrect_answers(JSONArray incorrect_answers) {
         this.incorrect_answers = incorrect_answers;
-    }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "type='" + type + '\'' +
-                ", difficulty='" + difficulty + '\'' +
-                ", category='" + category + '\'' +
-                ", question='" + question + '\'' +
-                ", correct_answer='" + correct_answer + '\'' +
-                ", incorrect_answers=" + incorrect_answers +
-                '}';
     }
 }

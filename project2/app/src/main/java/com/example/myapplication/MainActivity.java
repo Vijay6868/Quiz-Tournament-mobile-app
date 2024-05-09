@@ -7,14 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.myapplication.api.QuestionControllerRESTAPI;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
     Button btPlayer, btAdmin;
     TextView tvClickHere;
-    QuestionControllerRESTAPI questionControllerRESTAPI;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +63,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void loaddata(View view){
-        questionControllerRESTAPI = new QuestionControllerRESTAPI();
-        questionControllerRESTAPI.start();
-    }
+
 }
