@@ -74,6 +74,7 @@
         android:drawableRight="@drawable/ic_calendar"
         android:hint="Start Date"
         android:padding="10dp"
+        android:text=""
         android:id="@+id/start_date"
         android:layout_marginLeft="40dp"
         android:textColorHint="@color/et_hint"/>
@@ -85,9 +86,21 @@
         android:drawableRight="@drawable/ic_calendar"
         android:hint="End Date"
         android:padding="10dp"
+        android:text=""
         android:id="@+id/end_date"
         android:layout_marginLeft="220dp"
         android:textColorHint="@color/et_hint"/>
+    <Spinner
+        android:background="@drawable/edit_text_background"
+        style="@style/app_spinner"
+        android:id="@+id/no_of_ques"
+        android:layout_below="@+id/start_date"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_down"
+        android:layout_marginTop="570dp"
+        android:layout_marginLeft="330dp"/>
 
     <TextView
         android:id="@+id/wlb_quiz_name"
@@ -128,7 +141,7 @@
         style="@style/button_3"
         android:layout_width="300sp"
         android:layout_height="50sp"
-        android:layout_below="@id/start_date"
+        android:layout_below="@id/no_of_ques"
         android:layout_centerInParent="true"
         android:layout_marginTop="60sp"
         android:text="Create"
