@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,10 +77,12 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
     //===========================
     Spinner sp_difficulty, sp_type, sp_category, sp_no_of_ques;
     TextView start_date, end_date;
-    String _start_date, _end_date, _title, _difficulty, _type, _category, _no_of_ques;
+    EditText name;
+    String _start_date, _end_date, _name, _difficulty, _type, _category, _no_of_ques;
     View view;
     TextView w_title, w_sdate, w_edate;
     Validator validator;
+    Button btCreate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,25 +90,47 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment__create__quiz, container, false);
 
-
+        inputs();
         handleSpDifficulty();
         handleSpType();
         handleSpCategory();
         handleSpNoOfQues();
         handleDateSelection();
         wLabels();
+        handleBtCreate();
         validator = new Validator();
         return view;
     }
+    public void inputs(){
+        name = view.findViewById(R.id.tbTitle);
+        _name = name.getText().toString();
+        start_date = view.findViewById(R.id.start_date);
+        _start_date = start_date.getText().toString();
+        end_date = view.findViewById(R.id.end_date);
+        _end_date = end_date.getText().toString();
+    }
+
+    public void handleBtCreate() {
+        btCreate = view.findViewById(R.id.btCreate);
+        btCreate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputs();
+                boolean check = validateInputs();
+                if(check){
+                    Toast.makeText(getContext(), "quiz created", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
 
-
-    public void handleSpDifficulty(){
+    public void handleSpCategory(){
         sp_difficulty = view.findViewById(R.id.spin_difficulty);
         sp_difficulty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                _category= parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -130,7 +156,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         sp_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                _type = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -147,12 +173,12 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_layout_2, options);
         sp_type.setAdapter(adapter);
     }
-    public void handleSpCategory(){
+    public void handleSpDifficulty(){
         sp_category = view.findViewById(R.id.spin_category);
         sp_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                _difficulty= parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -204,7 +230,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         int currentDay = c.get(Calendar.DAY_OF_MONTH);
 
         // Start date selection
-        start_date = view.findViewById(R.id.start_date);
+
         start_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,7 +257,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         });
 
         // End date selection
-        end_date = view.findViewById(R.id.end_date);
+
         end_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -258,15 +284,47 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
             }
         });
     }
-//    public boolean validateInputs(){
-//        Validator validator = new Validator();
-//        boolean isValid = true;
-//        
-//        if(!validator.isValidDate(String.valueOf(start_date)))
-//        
-//        
-//        return isValid;
-//    }
+
+    public boolean validateInputs(){
+        Validator validator = new Validator();
+        boolean isValid = true;
+
+
+        if(!validator.isValidName(_name)){
+
+            w_title.setVisibility(view.VISIBLE);
+            isValid = false;
+        }
+        else {
+            w_title.setVisibility(view.GONE);
+        }
+        if (_start_date.isEmpty() ) {
+            w_sdate.setVisibility(view.VISIBLE);
+            isValid =false;
+        } else {
+            if(validator.isValidDate(_start_date)){
+                w_sdate.setVisibility(view.GONE);
+            }else {
+                w_sdate.setVisibility(view.VISIBLE);
+                isValid = false;
+            }
+
+        }
+        if (_end_date.isEmpty()) {
+            w_edate.setVisibility(view.VISIBLE);
+            isValid =false;
+        } else {
+            if(validator.isValidDate(_end_date)){
+                w_edate.setVisibility(view.GONE);
+            }else {
+                w_edate.setVisibility(view.VISIBLE);
+                isValid = false;
+            }
+
+        }
+
+        return isValid;
+    }
 
 
     @Override

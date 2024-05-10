@@ -18,17 +18,17 @@
 
         />
 
-    <EditText
-        android:id="@+id/tbTitle"
-        style="@style/et_Text"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/lbHeading_login"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/edit_text_background"
-        android:hint="Quiz Name"
-        android:textColorHint="@color/et_hint" />
+ <EditText
+     android:id="@+id/tbTitle"
+     style="@style/et_Text"
+     android:layout_width="320dp"
+     android:layout_height="50dp"
+     android:layout_below="@+id/lbHeading_login"
+     android:layout_centerInParent="true"
+     android:layout_marginTop="60dp"
+     android:background="@drawable/edit_text_background"
+     android:hint="Quiz Name"
+     android:textColorHint="@color/et_hint" />
 
    <Spinner
 
@@ -136,15 +136,15 @@
         android:layout_toEndOf="@+id/tbTitle"
         android:layout_marginTop="490dp"/>
 
-    <Button
-        android:id="@+id/btLogin"
-        style="@style/button_3"
-        android:layout_width="300sp"
-        android:layout_height="50sp"
-        android:layout_below="@id/no_of_ques"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="60sp"
-        android:text="Create"
-        android:textSize="18sp" />
+ <Button
+     android:id="@+id/btCreate"
+     style="@style/button_3"
+     android:layout_width="300sp"
+     android:layout_height="50sp"
+     android:layout_below="@id/no_of_ques"
+     android:layout_centerInParent="true"
+     android:layout_marginTop="60sp"
+     android:text="Create"
+     android:textSize="18sp" />
 
 </RelativeLayout>
