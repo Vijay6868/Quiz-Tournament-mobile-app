@@ -13,12 +13,17 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.api.DataCallback;
 import com.example.myapplication.api.QuestionsModelList;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,7 +75,10 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
     //===========================
     Spinner sp_difficulty, sp_type, sp_category, sp_no_of_ques;
     TextView start_date, end_date;
+    String _start_date, _end_date, _title, _difficulty, _type, _category, _no_of_ques;
     View view;
+    TextView w_title, w_sdate, w_edate;
+    Validator validator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +92,8 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         handleSpCategory();
         handleSpNoOfQues();
         handleDateSelection();
+        wLabels();
+        validator = new Validator();
         return view;
     }
 
@@ -187,31 +197,85 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         sp_no_of_ques.setAdapter(adapter);
     }
 
-    public void handleDateSelection(){
+    public void handleDateSelection() {
         Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        start_date = view.findViewById(R.id.start_date);
-        end_date = view.findViewById(R.id.end_date);
+        int currentYear = c.get(Calendar.YEAR);
+        int currentMonth = c.get(Calendar.MONTH);
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
 
+        // Start date selection
+        start_date = view.findViewById(R.id.start_date);
         start_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        start_date.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+                        String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        start_date.setText(selectedDate);
+                        boolean validDate = validator.isValidDate(selectedDate);
+                        
+                        if(validDate){
+                            w_sdate.setVisibility(view.INVISIBLE);
+                            //Toast.makeText(getContext(), "valid", Toast.LENGTH_SHORT).show();
+                            _start_date = selectedDate;
+                        }
+                        else {
+                            w_sdate.setVisibility(view.VISIBLE);
+                        }
+                    
                     }
-                },year,month,day);
+                }, currentYear, currentMonth, currentDay);
                 datePickerDialog.show();
             }
         });
 
+        // End date selection
+        end_date = view.findViewById(R.id.end_date);
+        end_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        end_date.setText(selectedDate);
+
+                        boolean validDate = validator.isValidDate(selectedDate);
+
+                        if(validDate){
+                            w_edate.setVisibility(view.INVISIBLE);
+                            //Toast.makeText(getContext(), "valid", Toast.LENGTH_SHORT).show();
+                            _end_date = selectedDate;
+                        }
+                        else {
+                            w_edate.setVisibility(view.VISIBLE);
+                        }
+
+                    }
+                }, currentYear, currentMonth, currentDay);
+                datePickerDialog.show();
+            }
+        });
     }
+//    public boolean validateInputs(){
+//        Validator validator = new Validator();
+//        boolean isValid = true;
+//        
+//        if(!validator.isValidDate(String.valueOf(start_date)))
+//        
+//        
+//        return isValid;
+//    }
+
 
     @Override
     public void onDataLoaded(QuestionsModelList list) {
         
+    }
+    public void wLabels(){
+        w_title = view.findViewById(R.id.wlb_quiz_name);
+        w_sdate = view.findViewById(R.id.wlb_start_date);
+        w_edate = view.findViewById(R.id.wlb_end_date);
     }
 }

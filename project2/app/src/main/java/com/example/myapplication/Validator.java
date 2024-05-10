@@ -1,5 +1,11 @@
 package com.example.myapplication;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class Validator {
     // Constants for minimum length requirements
     private static final int MIN_USERNAME_LENGTH = 4;
@@ -48,6 +54,28 @@ public class Validator {
     // Generic method to validate any string attribute based on minimum length
     private static boolean isValidString(String attribute, int minLength) {
         return attribute != null && attribute.length() >= minLength;
+    }
+    public static boolean isValidDate(String date) {
+        Calendar c = Calendar.getInstance();
+        int currentYear = c.get(Calendar.YEAR);
+        int currentMonth = c.get(Calendar.MONTH);
+        int currentDay = c.get(Calendar.DAY_OF_MONTH);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        try {
+            Date selectedDateObj = sdf.parse(date);
+
+            // Compare selected date with current date
+            Date currentDateObj = sdf.parse(currentDay + "/" + (currentMonth + 1) + "/" + currentYear);
+            if (selectedDateObj.before(currentDateObj)) {
+                return false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return true;
+
+
     }
 
 }
