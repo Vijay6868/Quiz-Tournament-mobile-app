@@ -37,18 +37,36 @@
        android:layout_below="@+id/tbTitle"
        style="@style/app_spinner"
        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_down"
+        android:layout_marginTop="290dp"
+        android:layout_marginLeft="330dp"/>
 
     <Spinner
         android:background="@drawable/edit_text_background"
         android:id="@+id/spin_ques_type"
         android:layout_below="@+id/spin_difficulty"
         style="@style/app_spinner"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_down"
+        android:layout_marginTop="360dp"
+        android:layout_marginLeft="330dp"/>
 
     <Spinner
         android:background="@drawable/edit_text_background"
         android:id="@+id/spin_category"
         android:layout_below="@+id/spin_ques_type"
         style="@style/app_spinner"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_down"
+        android:layout_marginTop="430dp"
+        android:layout_marginLeft="330dp"/>
     <TextView
         style="@style/start_date_picker"
         android:background="@drawable/edit_text_background"

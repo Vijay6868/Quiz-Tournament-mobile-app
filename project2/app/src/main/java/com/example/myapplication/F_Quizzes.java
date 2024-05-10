@@ -92,7 +92,7 @@ public class F_Quizzes extends Fragment {
         options.add("PAST QUIZZES");
         options.add("ALL QUIZZES");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_layout, options);
-        //adapter.setDropDownViewResource(R.layout.se);
+
         sp_quiz_selection.setAdapter(adapter);
     }
 

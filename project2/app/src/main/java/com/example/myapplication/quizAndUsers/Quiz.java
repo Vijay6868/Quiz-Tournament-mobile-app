@@ -1,15 +1,17 @@
 package com.example.myapplication.quizAndUsers;
 
+import com.example.myapplication.api.QuestionsModelList;
+
 import java.util.Date;
 import java.util.Random;
 public class Quiz {
     String qname;
     int quiz_id;
     Date sdate,edate;
-    Questions questions;
+    QuestionsModelList questions;
     int likes;
 
-    public Quiz(String qname, Date sdate, Date edate, Questions questions) {
+    public Quiz(String qname, Date sdate, Date edate, QuestionsModelList questions) {
         this.qname = qname;
         this.sdate = sdate;
         this.edate = edate;
@@ -61,11 +63,11 @@ public class Quiz {
         this.edate = edate;
     }
 
-    public Questions getQuestions() {
+/*    public Questions getQuestions() {
         return questions;
     }
 
     public void setQuestions(Questions questions) {
         this.questions = questions;
-    }
+    }*/
 }

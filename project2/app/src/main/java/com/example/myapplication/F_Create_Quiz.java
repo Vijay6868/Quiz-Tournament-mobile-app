@@ -12,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.myapplication.api.DataCallback;
+import com.example.myapplication.api.QuestionsModelList;
+
 import java.util.ArrayList;
 
 /**
@@ -19,7 +22,7 @@ import java.util.ArrayList;
  * Use the {@link F_Create_Quiz#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class F_Create_Quiz extends Fragment {
+public class F_Create_Quiz extends Fragment implements DataCallback {
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -71,9 +74,12 @@ public class F_Create_Quiz extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment__create__quiz, container, false);
         sp_difficulty = view.findViewById(R.id.spin_difficulty);
+
+        handleSpDifficulty();
+        //handleDateSelection();
         return view;
     }
-    public void handSpDifficulty(){
+    public void handleSpDifficulty(){
         sp_difficulty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -91,11 +97,17 @@ public class F_Create_Quiz extends Fragment {
         options.add("moderate");
         options.add("easy");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item,options);
-        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_layout_2, options);
+        //adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
+        sp_difficulty.setAdapter(adapter);
     }
     public void handleDateSelection(){
         start_date = (TextView) getView().findViewById(R.id.start_date);
         end_date = (TextView) getView().findViewById(R.id.start_date);
+    }
+
+    @Override
+    public void onDataLoaded(QuestionsModelList list) {
+        
     }
 }
