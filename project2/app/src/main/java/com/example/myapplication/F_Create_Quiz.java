@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.api.DataCallback;
+import com.example.myapplication.api.QuestionModelControllerAPI;
 import com.example.myapplication.api.QuestionsModelList;
 
 import java.text.ParseException;
@@ -83,6 +84,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
     TextView w_title, w_sdate, w_edate;
     Validator validator;
     Button btCreate;
+    QuestionModelControllerAPI questionModelControllerAPI;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -200,7 +202,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         sp_no_of_ques.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                _no_of_ques = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -326,10 +328,9 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         return isValid;
     }
 
-
     @Override
     public void onDataLoaded(QuestionsModelList list) {
-        
+        //create questionModelControllerAPI here;
     }
     public void wLabels(){
         w_title = view.findViewById(R.id.wlb_quiz_name);

@@ -38,11 +38,55 @@ public class QuestionModelControllerAPI {
 
             //"https://opentdb.com/api.php?amount=10&category=9&difficulty=medium";
     private Context context;
+    String noOfQues, difficulty, type;
+    String category;
 
-    public QuestionModelControllerAPI(Context context, DataCallback callback) {
+    public QuestionModelControllerAPI(Context context, DataCallback callback, String type,
+                                      String category, String difficulty, String noOfQues) {
         this.context = context;
         this.callback = callback;
         list = new QuestionsModelList();
+
+        this.type = qType(type);
+        this.difficulty = difficulty;
+        this.noOfQues = noOfQues;
+        this.category = qCategory(category);
+
+    }
+
+    private String qCategory(String category) {
+        String cat = "";
+
+        switch (category){
+            case "general Knowledge":
+                cat = "9";
+                break;
+            case "books":
+                cat ="11";
+                break;
+            case "films":
+                cat ="12";
+                break;
+            case "music":
+                cat ="14";
+                break;
+            case "television":
+                cat ="15";
+                break;
+            case "computer science":
+                cat ="18";
+                break;
+        }
+        return cat;
+
+    }
+
+    private String qType(String type) {
+
+        if(type.equals("true or false")){
+            return "boolean";
+        }
+        return "multiple";
     }
 
     public void getData() {
