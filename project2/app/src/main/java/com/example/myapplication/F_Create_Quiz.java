@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.example.myapplication.api.DataCallback;
 import com.example.myapplication.api.QuestionModelControllerAPI;
 import com.example.myapplication.api.QuestionsModelList;
+import com.example.myapplication.quizAndUsers.Quiz;
+import com.example.myapplication.quizAndUsers.QuizManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -332,7 +334,11 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
 
     @Override
     public void onDataLoaded(QuestionsModelList list) {
-        //create questionModelControllerAPI here;
+        //String category = list.getUserModelList().get(0).getCategory();
+        //Toast.makeText(getContext(), category, Toast.LENGTH_SHORT).show();
+
+        Quiz quiz = new Quiz(_name,_start_date,_end_date,list);
+        QuizManager quizManager = new QuizManager(quiz);
     }
     public void wLabels(){
         w_title = view.findViewById(R.id.wlb_quiz_name);
@@ -343,5 +349,6 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         questionModelControllerAPI = new QuestionModelControllerAPI(getContext(),this,
                 _type,_category,_difficulty,_no_of_ques);
         questionModelControllerAPI.getData();
+
     }
 }

@@ -34,7 +34,8 @@ public class QuestionModelControllerAPI {
     private QuestionsModelList list;
     private QuestionModel singleModel;
     private DataCallback callback;
-    private String url = "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=boolean";
+    private String url; //= "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=boolean";
+    private String baseURL = "https://opentdb.com/api.php?amount=%s&category=%s&difficulty=%s&type=%s";
 
             //"https://opentdb.com/api.php?amount=10&category=9&difficulty=medium";
     private Context context;
@@ -51,6 +52,7 @@ public class QuestionModelControllerAPI {
         this.difficulty = difficulty;
         this.noOfQues = noOfQues;
         this.category = qCategory(category);
+        this.url = String.format(baseURL, this.noOfQues, this.category, this.difficulty, this.type);
 
     }
 
