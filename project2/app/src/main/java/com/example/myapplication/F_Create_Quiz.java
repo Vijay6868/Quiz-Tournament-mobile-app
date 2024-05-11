@@ -103,6 +103,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         validator = new Validator();
         return view;
     }
+
     public void inputs(){
         name = view.findViewById(R.id.tbTitle);
         _name = name.getText().toString();
@@ -121,6 +122,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
                 boolean check = validateInputs();
                 if(check){
                     Toast.makeText(getContext(), "quiz created", Toast.LENGTH_SHORT).show();
+                    apiCall();
                 }
             }
         });
@@ -336,5 +338,10 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         w_title = view.findViewById(R.id.wlb_quiz_name);
         w_sdate = view.findViewById(R.id.wlb_start_date);
         w_edate = view.findViewById(R.id.wlb_end_date);
+    }
+    private void apiCall() {
+        questionModelControllerAPI = new QuestionModelControllerAPI(getContext(),this,
+                _type,_category,_difficulty,_no_of_ques);
+        questionModelControllerAPI.getData();
     }
 }
