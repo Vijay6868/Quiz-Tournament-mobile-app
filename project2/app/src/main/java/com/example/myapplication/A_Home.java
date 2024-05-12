@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class A_Home extends AppCompatActivity {
     FrameLayout frameLayout;
     BottomNavigationView navBar;
@@ -18,7 +20,12 @@ public class A_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ArrayList<String> options = new ArrayList<>();
+        options.add("option1");
+        options.add("option1");
+        options.add("option1");
 
+        FirebaseDatabase.getInstance().getReference().child("Options").setValue(options);
 
         frameLayout = findViewById(R.id.main_frame);
         navBar = findViewById(R.id.nav_bar);

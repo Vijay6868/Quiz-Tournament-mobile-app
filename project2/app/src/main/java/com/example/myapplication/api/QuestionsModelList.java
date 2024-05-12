@@ -3,26 +3,26 @@ package com.example.myapplication.api;
 import java.util.ArrayList;
 
 public class QuestionsModelList {
-    private ArrayList<QuestionModel> userModelList;
+    private ArrayList<QuestionModel> questionModelList;
 
     public QuestionsModelList() {
-        this.userModelList = new ArrayList<>();
+        this.questionModelList = new ArrayList<>();
     }
 
     public void addUserModel(QuestionModel questionModel) {
-        userModelList.add(questionModel);
+        questionModelList.add(questionModel);
     }
 
     public void removeUserModel(QuestionModel questionModel) {
-        userModelList.remove(questionModel);
+        questionModelList.remove(questionModel);
     }
 
-    public ArrayList<QuestionModel> getUserModelList() {
-        return userModelList;
+    public ArrayList<QuestionModel> getQuestionModelList() {
+        return questionModelList;
     }
 
-    public void setUserModelList(ArrayList<QuestionModel> questionModelList) {
-        this.userModelList = questionModelList;
+    public void setQuestionModelList(ArrayList<QuestionModel> questionModelList) {
+        this.questionModelList = questionModelList;
     }
 }
 
