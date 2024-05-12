@@ -29,8 +29,13 @@ public class QuizManager {
         quiz_data.put("sdate",quiz.getSdate());
         quiz_data.put("edate",quiz.getEdate());
         quiz_data.put("likes",quiz.getLikes());
+        quiz_data.put("type", quiz.getType());
+        quiz_data.put("difficulty",quiz.getDifficulty());
+        quiz_data.put("category", quiz.getCategory());
+        quiz_data.put("noOfQues",quiz.getNoOfQues());
 
-        String quizID = Integer.toString(quiz.getQuiz_id());
+        String parseQuizID = Integer.toString(quiz.getQuiz_id());
+        String quizID = "quiz_id: "+parseQuizID;
 
         FirebaseDatabase.getInstance().getReference().child("Quizzes").child(quizID).setValue(quiz_data);
 
@@ -49,7 +54,9 @@ public class QuizManager {
             question_data.put("correct_answer",q.getCorrect_answer());
             question_data.put("incorrect_answers",incorrect_answers);
 
-            String que_no = Integer.toString(count);
+            String parse_que_no = Integer.toString(count);
+            String que_no = "Q"+parse_que_no;
+
             FirebaseDatabase.getInstance().getReference().child("Questions").child(quizID).child(que_no).setValue(question_data);
             count++;
         }

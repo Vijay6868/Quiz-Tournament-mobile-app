@@ -10,12 +10,18 @@ public class Quiz {
     String sdate,edate;
     QuestionsModelList questions;
     int likes;
+    String type, difficulty,category,noOfQues;
 
-    public Quiz(String qname, String sdate, String edate, QuestionsModelList questions) {
+    public Quiz(String qname, String sdate, String edate,String type, String difficulty,
+                String category, String noOfQues, QuestionsModelList questions) {
         this.qname = qname;
         this.sdate = sdate;
         this.edate = edate;
         this.questions = questions;
+        this.type = type;
+        this.difficulty = difficulty;
+        this.category = category;
+        this.noOfQues = noOfQues;
         likes =0;
 
         Random random = new Random();
@@ -69,6 +75,38 @@ public class Quiz {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getNoOfQues() {
+        return noOfQues;
+    }
+
+    public void setNoOfQues(String noOfQues) {
+        this.noOfQues = noOfQues;
     }
 }
 

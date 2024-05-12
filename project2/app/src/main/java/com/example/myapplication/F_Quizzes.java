@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,6 +11,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -68,8 +74,10 @@ public class F_Quizzes extends Fragment {
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.fragment_f__quizzes, container, false);
         handleQuizSelectionSpin();
+        readQuizData();
         return view;
     }
+
     public void handleQuizSelectionSpin(){
         sp_quiz_selection = view.findViewById(R.id.sp_quizzes);
 
@@ -94,6 +102,19 @@ public class F_Quizzes extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_layout, options);
 
         sp_quiz_selection.setAdapter(adapter);
+    }
+    private void readQuizData() {
+        FirebaseDatabase.getInstance().getReference().child("Quizzes").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 
