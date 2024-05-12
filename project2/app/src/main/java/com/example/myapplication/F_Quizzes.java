@@ -115,8 +115,15 @@ public class F_Quizzes extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot data: snapshot.getChildren()){
 
-                        String quizName = data.child("category").getValue(String.class);
-                        singleQuiz.add(quizName);
+                        String quiz_id = data.child("quiz_id").getValue().toString();
+                        String noOfQues = data.child("noOfQues").getValue(String.class);
+                        String sdate = data.child("sdate").getValue(String.class);
+                        String edate = data.child("edate").getValue(String.class);
+                        String qname = data.child("qname").getValue(String.class);
+                        String difficulty = data.child("difficulty").getValue(String.class);
+                        String type = data.child("type").getValue(String.class);
+                        String category = data.child("category").getValue(String.class);
+                        int likes = data.child("likes").getValue(Integer.class);
                 }
             }
 
