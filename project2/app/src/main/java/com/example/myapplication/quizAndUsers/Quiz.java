@@ -23,7 +23,53 @@ public class Quiz {
 
     }
 
+    public String getQname() {
+        return qname;
+    }
 
+    public void setQname(String qname) {
+        this.qname = qname;
+    }
+
+    public int getQuiz_id() {
+        return quiz_id;
+    }
+
+    public void setQuiz_id(int quiz_id) {
+        this.quiz_id = quiz_id;
+    }
+
+    public String getSdate() {
+        return sdate;
+    }
+
+    public void setSdate(String sdate) {
+        this.sdate = sdate;
+    }
+
+    public String getEdate() {
+        return edate;
+    }
+
+    public void setEdate(String edate) {
+        this.edate = edate;
+    }
+
+    public QuestionsModelList getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(QuestionsModelList questions) {
+        this.questions = questions;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
 }
 
 
