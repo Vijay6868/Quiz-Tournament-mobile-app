@@ -25,7 +25,7 @@ public class A_Home extends AppCompatActivity {
         options.add("option1");
         options.add("option1");
 
-        FirebaseDatabase.getInstance().getReference().child("Options").setValue(options);
+        //FirebaseDatabase.getInstance().getReference().child("Options").setValue(options);
 
         frameLayout = findViewById(R.id.main_frame);
         navBar = findViewById(R.id.nav_bar);

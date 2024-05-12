@@ -8,6 +8,10 @@ import com.example.myapplication.api.QuestionModelControllerAPI;
 import com.example.myapplication.api.QuestionsModelList;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class QuizManager {
@@ -34,14 +38,35 @@ public class QuizManager {
 
         //HashMap<String, Object> question_data = new HashMap<>();
         for(QuestionModel q : questions_list.getQuestionModelList()){
+
+            ArrayList<String> incorrect_answers = new ArrayList<>();
+            incorrect_answers = parseJsonArray(q.getIncorrect_answers());
+
             HashMap<String, Object> question_data = new HashMap<>();
             question_data.put("type",q.getType());
             question_data.put("difficulty",q.getDifficulty());
             question_data.put("question",q.getQuestion());
             question_data.put("correct_answer",q.getCorrect_answer());
-            question_data.put("incorrect_answers",q.getIncorrect_answers());
+
+            question_data.put("incorrect_answers",incorrect_answers);
 
             FirebaseDatabase.getInstance().getReference().child("Questions").child(quizID).setValue(question_data);
         }
+
+
+    }
+    public ArrayList<String> parseJsonArray(JSONArray jsonArray){
+        ArrayList<String> incorrect_answers = new ArrayList<>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                //String val = String.valueOf(jsonArray.getInt(i));
+                incorrect_answers.add(jsonArray.getString(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return incorrect_answers;
     }
 }
