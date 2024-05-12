@@ -6,13 +6,26 @@ import java.util.Date;
 import java.util.Random;
 public class Quiz {
     String qname;
-    int quiz_id;
+    String quiz_id;
     String sdate,edate;
     QuestionsModelList questions;
     int likes;
     String type, difficulty,category,noOfQues;
 
-    public Quiz(String qname, String sdate, String edate,String type, String difficulty,
+    public Quiz(String qname, String quiz_id, String sdate, String edate, int likes, String type,
+                String difficulty, String category, String noOfQues) {
+        this.qname = qname;
+        this.quiz_id = quiz_id;
+        this.sdate = sdate;
+        this.edate = edate;
+        this.likes = likes;
+        this.type = type;
+        this.difficulty = difficulty;
+        this.category = category;
+        this.noOfQues = noOfQues;
+    }
+
+    public Quiz(String qname, String sdate, String edate, String type, String difficulty,
                 String category, String noOfQues, QuestionsModelList questions) {
         this.qname = qname;
         this.sdate = sdate;
@@ -25,7 +38,8 @@ public class Quiz {
         likes =0;
 
         Random random = new Random();
-        quiz_id = random.nextInt(100);
+        int gen_quiz_id = random.nextInt(100);
+        quiz_id = "quiz_id: "+gen_quiz_id;
 
     }
 
@@ -37,11 +51,11 @@ public class Quiz {
         this.qname = qname;
     }
 
-    public int getQuiz_id() {
+    public String getQuiz_id() {
         return quiz_id;
     }
 
-    public void setQuiz_id(int quiz_id) {
+    public void setQuiz_id(String quiz_id) {
         this.quiz_id = quiz_id;
     }
 

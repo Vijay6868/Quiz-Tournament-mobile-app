@@ -34,8 +34,8 @@ public class QuizManager {
         quiz_data.put("category", quiz.getCategory());
         quiz_data.put("noOfQues",quiz.getNoOfQues());
 
-        String parseQuizID = Integer.toString(quiz.getQuiz_id());
-        String quizID = "quiz_id: "+parseQuizID;
+        //String parseQuizID = Integer.toString(quiz.getQuiz_id());
+        String quizID = quiz.getQuiz_id();
 
         FirebaseDatabase.getInstance().getReference().child("Quizzes").child(quizID).setValue(quiz_data);
 

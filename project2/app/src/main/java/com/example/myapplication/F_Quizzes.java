@@ -12,12 +12,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.myapplication.quizAndUsers.Quiz;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+
+import okhttp3.internal.cache.DiskLruCache;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +71,8 @@ public class F_Quizzes extends Fragment {
 //============================================================================================
     Spinner sp_quiz_selection;
     View view;
+    ArrayList<Quiz> quizArrayList;
+    ArrayList<String> singleQuiz;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,10 +109,15 @@ public class F_Quizzes extends Fragment {
         sp_quiz_selection.setAdapter(adapter);
     }
     private void readQuizData() {
+        singleQuiz = new ArrayList<>();
         FirebaseDatabase.getInstance().getReference().child("Quizzes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot data: snapshot.getChildren()){
 
+                        String quizName = data.child("category").getValue(String.class);
+                        singleQuiz.add(quizName);
+                }
             }
 
             @Override
