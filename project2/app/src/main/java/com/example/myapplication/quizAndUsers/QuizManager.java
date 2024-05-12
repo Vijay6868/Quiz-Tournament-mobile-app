@@ -35,7 +35,7 @@ public class QuizManager {
         FirebaseDatabase.getInstance().getReference().child("Quizzes").child(quizID).setValue(quiz_data);
 
         QuestionsModelList questions_list= quiz.getQuestions();
-
+        int count = 1;
         //HashMap<String, Object> question_data = new HashMap<>();
         for(QuestionModel q : questions_list.getQuestionModelList()){
 
@@ -47,10 +47,11 @@ public class QuizManager {
             question_data.put("difficulty",q.getDifficulty());
             question_data.put("question",q.getQuestion());
             question_data.put("correct_answer",q.getCorrect_answer());
-
             question_data.put("incorrect_answers",incorrect_answers);
 
-            FirebaseDatabase.getInstance().getReference().child("Questions").child(quizID).setValue(question_data);
+            String que_no = Integer.toString(count);
+            FirebaseDatabase.getInstance().getReference().child("Questions").child(quizID).child(que_no).setValue(question_data);
+            count++;
         }
 
 
