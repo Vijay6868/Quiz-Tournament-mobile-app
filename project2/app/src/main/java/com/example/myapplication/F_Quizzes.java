@@ -74,7 +74,7 @@ public class F_Quizzes extends Fragment {
 //============================================================================================
     Spinner sp_quiz_selection;
     View view;
-    ArrayList<Quiz> quizArrayList;
+    ArrayList<Quiz>  quizArrayList;
     //ArrayList<String> singleQuiz;
     Quiz singleQuiz;
     RecyclerView recyclerView;
@@ -118,6 +118,7 @@ public class F_Quizzes extends Fragment {
     }
     private void readQuizData() {
         //singleQuiz = new ArrayList<>();
+        quizArrayList = new ArrayList<>();
         FirebaseDatabase.getInstance().getReference().child("Quizzes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
