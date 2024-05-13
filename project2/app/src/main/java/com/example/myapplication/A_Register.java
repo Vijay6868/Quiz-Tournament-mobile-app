@@ -101,6 +101,7 @@ public class A_Register extends AppCompatActivity {
                         else{
                             m.put("quizzes_completed",quiz_completed);
                         }
+                        m.put("user_type",_userType);
 
                         FirebaseDatabase.getInstance().getReference().child(_userType).child(uid).setValue(m);
 

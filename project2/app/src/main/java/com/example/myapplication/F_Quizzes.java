@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.myapplication.quizAndUsers.Quiz;
+import com.example.myapplication.recyclerview.RVAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -72,7 +75,11 @@ public class F_Quizzes extends Fragment {
     Spinner sp_quiz_selection;
     View view;
     ArrayList<Quiz> quizArrayList;
-    ArrayList<String> singleQuiz;
+    //ArrayList<String> singleQuiz;
+    Quiz singleQuiz;
+    RecyclerView recyclerView;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,6 +87,7 @@ public class F_Quizzes extends Fragment {
          view = inflater.inflate(R.layout.fragment_f__quizzes, container, false);
         handleQuizSelectionSpin();
         readQuizData();
+        recView();
         return view;
     }
 
@@ -109,7 +117,7 @@ public class F_Quizzes extends Fragment {
         sp_quiz_selection.setAdapter(adapter);
     }
     private void readQuizData() {
-        singleQuiz = new ArrayList<>();
+        //singleQuiz = new ArrayList<>();
         FirebaseDatabase.getInstance().getReference().child("Quizzes").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -124,14 +132,28 @@ public class F_Quizzes extends Fragment {
                         String type = data.child("type").getValue(String.class);
                         String category = data.child("category").getValue(String.class);
                         int likes = data.child("likes").getValue(Integer.class);
+
+                        singleQuiz = new Quiz(qname,quiz_id,sdate,edate,likes,type,
+                                difficulty,category,noOfQues);
+                        quizArrayList.add(singleQuiz);
                 }
+                quizArrayList.size();
+                recView();
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+    }
+    public void recView(){
+        recyclerView = view.findViewById(R.id.f_rv_item);
+        RVAdapter adapter = new RVAdapter(quizArrayList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(adapter);
+
     }
 
 
