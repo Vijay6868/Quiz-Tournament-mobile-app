@@ -13,9 +13,12 @@ import com.example.myapplication.R;
 import com.example.myapplication.quizAndUsers.Quiz;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
     private ArrayList<Quiz> quizArrayList;
+    private int[] imageResources = {R.drawable.cardimg5, R.drawable.cardimg6
+            ,R.drawable.cardimg7,R.drawable.cardimg8, R.drawable.cardimg9};
     private int[] cardColors = {R.color.bt_color_2, R.color.bt_color_3, R.color.bt_color_1};
 
     //private SelectListener listener;
@@ -43,6 +46,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
 
         holder.rl_color.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), colorRes));
 
+        Random random = new Random();
+        int randomIndex = random.nextInt(imageResources.length);
+
+        // Set the randomly selected image
+        holder.cardimg.setImageResource(imageResources[randomIndex]);
     }
 
     @Override

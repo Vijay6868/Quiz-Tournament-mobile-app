@@ -1,6 +1,7 @@
 package com.example.myapplication.recyclerview;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.example.myapplication.R;
 public class RVHolder extends RecyclerView.ViewHolder {
 TextView qname, sdate,edate;
 RelativeLayout rl_color;
+ImageView cardimg;
 
     public RVHolder(@NonNull View itemView) {
         super(itemView);
@@ -20,6 +22,7 @@ RelativeLayout rl_color;
         sdate = itemView.findViewById(R.id.start_date);
         edate = itemView.findViewById(R.id.end_date);
         rl_color = itemView.findViewById(R.id.rl_color);
+        cardimg = itemView.findViewById(R.id.card_img);
 
     }
 }
