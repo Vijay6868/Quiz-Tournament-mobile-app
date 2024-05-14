@@ -30,7 +30,7 @@ import okhttp3.internal.cache.DiskLruCache;
  * Use the {@link F_Quizzes#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class F_Quizzes extends Fragment {
+public class F_Quizzes extends Fragment implements SelectedListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -151,11 +151,21 @@ public class F_Quizzes extends Fragment {
     }
     public void recView(){
         recyclerView = view.findViewById(R.id.f_rv_item);
-        RVAdapter adapter = new RVAdapter(quizArrayList);
+        RVAdapter adapter = new RVAdapter(quizArrayList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
     }
 
 
+    @Override
+    public void onItemClicked(Quiz quiz) {
+        F_Quiz_Details fQuizDetails = new F_Quiz_Details();
+
+        // Replace the current fragment with the deal details fragment
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame, fQuizDetails)
+                .addToBackStack(null)
+                .commit();
+    }
 }

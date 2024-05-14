@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
@@ -14,6 +15,7 @@ public class RVHolder extends RecyclerView.ViewHolder {
 TextView qname, sdate,edate;
 RelativeLayout rl_color;
 ImageView cardimg;
+CardView cardView;
 
     public RVHolder(@NonNull View itemView) {
         super(itemView);
@@ -23,6 +25,7 @@ ImageView cardimg;
         edate = itemView.findViewById(R.id.end_date);
         rl_color = itemView.findViewById(R.id.rl_color);
         cardimg = itemView.findViewById(R.id.card_img);
+        cardView = itemView.findViewById(R.id.rv_carditems);
 
     }
 }

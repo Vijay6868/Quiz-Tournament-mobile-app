@@ -2,9 +2,10 @@ package com.example.myapplication.quizAndUsers;
 
 import com.example.myapplication.api.QuestionsModelList;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Random;
-public class Quiz {
+public class Quiz implements Serializable {
     String qname;
     String quiz_id;
     String sdate,edate;
