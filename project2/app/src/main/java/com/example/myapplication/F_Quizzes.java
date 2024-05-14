@@ -162,6 +162,10 @@ public class F_Quizzes extends Fragment implements SelectedListener{
     public void onItemClicked(Quiz quiz) {
         F_Quiz_Details fQuizDetails = new F_Quiz_Details();
 
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("quiz", quiz);
+        fQuizDetails.setArguments(bundle);
+
         // Replace the current fragment with the deal details fragment
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_frame, fQuizDetails)

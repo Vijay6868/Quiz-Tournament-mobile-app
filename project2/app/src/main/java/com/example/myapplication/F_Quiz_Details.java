@@ -7,6 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.myapplication.quizAndUsers.Quiz;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,12 +60,40 @@ public class F_Quiz_Details extends Fragment {
     }
     //================================================================================
     View view;
+    EditText qname, sdate,edate;
+    TextView difficulty, category, noOfQues;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.f_quiz_details, container, false);
+         qname = view.findViewById(R.id.tbTitle);
+         difficulty = view.findViewById(R.id.spin_difficulty);
+         category = view.findViewById(R.id.spin_category);
+         noOfQues = view.findViewById(R.id.spin_ques_type);
+         sdate = view.findViewById(R.id.start_date);
+         edate = view.findViewById(R.id.end_date);
+
+         setQuizDetails();
 
         return view;
+    }
+
+    public void setQuizDetails(){
+        Bundle bundle = getArguments();
+
+        if(bundle !=null){
+            Quiz quiz = (Quiz) bundle.getSerializable("quiz");
+            // use quiz object to populate the quiz_details fields
+            if(quiz != null){
+                qname.setText(quiz.getQname());
+                difficulty.setText(quiz.getDifficulty());
+                category.setText(quiz.getCategory());
+                noOfQues.setText(quiz.getNoOfQues());
+                sdate.setText(quiz.getSdate());
+                edate.setText(quiz.getEdate());
+            }
+
+        }
     }
 }
