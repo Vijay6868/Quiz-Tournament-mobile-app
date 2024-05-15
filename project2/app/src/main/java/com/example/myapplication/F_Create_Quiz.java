@@ -85,6 +85,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
                 if(check){
                     Toast.makeText(getContext(), "quiz created", Toast.LENGTH_SHORT).show();
                     apiCall();
+                    displayCreateQuizFrag();
                 }
             }
         });
@@ -309,5 +310,12 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
                 _type,_category,_difficulty,_no_of_ques);
         questionModelControllerAPI.getData();
 
+    }
+    public void displayCreateQuizFrag(){
+        F_Create_Quiz fCreateQuiz = new F_Create_Quiz();
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame,fCreateQuiz).addToBackStack(null)
+                .commit();
     }
 }

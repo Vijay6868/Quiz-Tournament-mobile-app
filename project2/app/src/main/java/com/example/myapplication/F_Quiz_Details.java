@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.quizAndUsers.QuizManager;
@@ -73,6 +77,7 @@ public class F_Quiz_Details extends Fragment {
     Validator validator;
     Quiz quiz;
     QuizManager quizManager;
+    ImageView iv_delete;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,12 +99,45 @@ public class F_Quiz_Details extends Fragment {
          setQuizDetails();
          inputs();
 
+         handleDeleteQuiz();
          handleBtClose();
          handleDateSelection();
          handleBtUpdate();
 
         return view;
     }
+
+    private void handleDeleteQuiz() {
+        iv_delete = view.findViewById(R.id.btDelete);
+        iv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Inside your method where you want to delete the quiz
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Are you sure you want to delete this quiz?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked Yes, delete the quiz
+                        Toast.makeText(getContext(), "Quiz Deleted!!", Toast.LENGTH_SHORT).show();
+                        quizManager = new QuizManager(quiz);
+                        quizManager.deleteQuizData(); // Call your method to delete the quiz here
+                        displayQuizzesFrag();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked No, do nothing
+                        dialog.dismiss(); // Dismiss the dialog
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+    }
+
     public void inputs(){
 
         _qname = qname.getText().toString();
@@ -139,13 +177,7 @@ public class F_Quiz_Details extends Fragment {
         btClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                F_Quizzes fQuizzes = new F_Quizzes();
-
-                // Replace the current fragment with the deal details fragment
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_frame, fQuizzes)
-                        .addToBackStack(null)
-                        .commit();
+                displayQuizzesFrag();
             }
         });
     }
@@ -285,5 +317,14 @@ public class F_Quiz_Details extends Fragment {
         }
 
         return isValid;
+    }
+    public void displayQuizzesFrag(){
+        F_Quizzes fQuizzes = new F_Quizzes();
+
+        // Replace the current fragment with the deal details fragment
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame, fQuizzes)
+                .addToBackStack(null)
+                .commit();
     }
 }

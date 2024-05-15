@@ -113,6 +113,32 @@ public class QuizManager {
         });
     }
     public void deleteQuizData(){
+        DatabaseReference quizRef = FirebaseDatabase.getInstance().getReference()
+                .child("Quizzes");
+        quizRef.child(quizID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.e(TAG,"quiz deleted");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG,"failed to delete quiz");
+            }
+        });
 
+        DatabaseReference quesRef = FirebaseDatabase.getInstance().getReference()
+                .child("Questions");
+        quesRef.child(quizID).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.e(TAG,"questions related to quiz deleted");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e(TAG,"failed to delete questions related to quiz");
+            }
+        });
     }
 }
