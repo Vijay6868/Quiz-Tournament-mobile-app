@@ -124,8 +124,8 @@ public class F_Quiz_Details extends Fragment {
                     quiz.setSdate((_start_date));
                     quiz.setQname(_qname);
 
-                    //quizManager = new QuizManager(quiz);
-                    //quizManager.updateQuizData();
+                    quizManager = new QuizManager(quiz);
+                    quizManager.updateQuizData();
                 }
 
             }
