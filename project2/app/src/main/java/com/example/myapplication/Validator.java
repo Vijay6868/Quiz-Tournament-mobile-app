@@ -59,5 +59,23 @@ public class Validator {
 
 
     }
+    public static boolean isDateSmallerThenOriginal(String updated,String date) {
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        try {
+            Date selectedDateObj = sdf.parse(date);
+
+            // Compare selected date with current date
+            Date updatedDateObj = sdf.parse(updated);
+            if (updatedDateObj.before(selectedDateObj)) {
+                return false;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return true;
+
+
+    }
 
 }

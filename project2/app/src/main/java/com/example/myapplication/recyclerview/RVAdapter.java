@@ -40,8 +40,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
     @Override
     public void onBindViewHolder(@NonNull RVHolder holder, int position) {
 
-        String s_date = "Start Date: ";
-        String e_date = "End Date: ";
+        String s_date = "Starts: ";
+        String e_date = "Ends: ";
 
         Quiz item = quizArrayList.get(position);
         holder.qname.setText(item.getQname());

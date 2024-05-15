@@ -7,28 +7,20 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@drawable/cardimg2"
-        android:id="@+id/l1"
-        >
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/cardimg2"
-            android:scaleType="centerCrop"
-            android:id="@+id/image"/>
+        android:layout_height="100dp"
+        android:id="@+id/l1">
 
         <ImageView
             android:id="@+id/btDelete"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignRight="@+id/image"
+
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
-            android:elevation="50dp"
+
             android:src="@drawable/ic_delete" />
         <ToggleButton
             android:layout_width="wrap_content"
@@ -61,6 +53,7 @@
             android:id="@+id/spin_difficulty"
             android:layout_below="@+id/tbTitle"
             style="@style/app_spinner"
+            android:hint="stylecheck"
             />
 
         <TextView
@@ -74,7 +67,7 @@
             android:id="@+id/spin_category"
             android:layout_below="@+id/spin_ques_type"
             style="@style/app_spinner"/>
-        <EditText
+        <TextView
             style="@style/start_date_picker"
             android:background="@drawable/edit_text_background"
             android:layout_below="@+id/spin_category"
@@ -85,7 +78,7 @@
             android:layout_marginLeft="40dp"
             android:textColorHint="@color/et_hint"/>
 
-        <EditText
+        <TextView
             style="@style/start_date_picker"
             android:background="@drawable/edit_text_background"
             android:layout_below="@+id/spin_category"
@@ -114,6 +107,7 @@
             android:layout_toEndOf="@+id/tbTitle"
             android:layout_marginTop="300dp"/>
 
+
         <Button
             android:id="@+id/btStart"
             style="@style/button_3_half"
@@ -130,6 +124,13 @@
             android:layout_marginTop="60dp"
             android:text="Close"
             android:layout_alignRight="@id/end_date"
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/btUpdate"
+            style="@style/button_2"
+            android:layout_below="@id/btClose"
+            android:layout_marginTop="40dp"
+            android:text="Update"
             android:textSize="18sp" />
 
     </RelativeLayout>

@@ -2,10 +2,19 @@ package com.example.myapplication.quizAndUsers;
 
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import com.example.myapplication.api.DataCallback;
 import com.example.myapplication.api.QuestionModel;
 import com.example.myapplication.api.QuestionModelControllerAPI;
 import com.example.myapplication.api.QuestionsModelList;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
@@ -16,10 +25,12 @@ import java.util.HashMap;
 
 public class QuizManager {
     Quiz quiz;
+    String quizID;
 
     public QuizManager(Quiz quiz) {
         this.quiz = quiz;
-        insertQuizData();
+        this.quizID = quiz.getQuiz_id();
+
     }
     public void insertQuizData(){
         HashMap<String, Object> quiz_data = new HashMap<>();
@@ -34,10 +45,10 @@ public class QuizManager {
         quiz_data.put("category", quiz.getCategory());
         quiz_data.put("noOfQues",quiz.getNoOfQues());
 
-        //String parseQuizID = Integer.toString(quiz.getQuiz_id());
-        String quizID = quiz.getQuiz_id();
 
-        FirebaseDatabase.getInstance().getReference().child("Quizzes").child(quizID).setValue(quiz_data);
+
+        FirebaseDatabase.getInstance().getReference().child("Quizzes")
+                .child(quizID).setValue(quiz_data);
 
         QuestionsModelList questions_list= quiz.getQuestions();
         int count = 1;
@@ -57,7 +68,8 @@ public class QuizManager {
             String parse_que_no = Integer.toString(count);
             String que_no = "Q"+parse_que_no;
 
-            FirebaseDatabase.getInstance().getReference().child("Questions").child(quizID).child(que_no).setValue(question_data);
+            FirebaseDatabase.getInstance().getReference().child("Questions")
+                    .child(quizID).child(que_no).setValue(question_data);
             count++;
         }
 
@@ -76,5 +88,31 @@ public class QuizManager {
         }
 
         return incorrect_answers;
+    }
+    public void updateQuizData(){
+
+        HashMap<String, Object> update_data = new HashMap<>();
+
+        update_data.put("qname",quiz.getQname());
+        update_data.put("sdate",quiz.getSdate());
+        update_data.put("edate",quiz.getEdate());
+
+        DatabaseReference quizRef = FirebaseDatabase.getInstance().getReference()
+                .child("Quizzes");
+
+        quizRef.child(quizID).updateChildren(update_data).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d(TAG,"quiz details updated");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+               Log.e(TAG,"failed to update quiz details");
+            }
+        });
+    }
+    public void deleteQuizData(){
+
     }
 }
