@@ -14,13 +14,9 @@
             android:id="@+id/btDelete"
             android:layout_width="40dp"
             android:layout_height="40dp"
-
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@color/white"
-
+            android:layout_marginLeft="340dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/ic_delete" />
         <ToggleButton
             android:layout_width="wrap_content"
@@ -88,6 +84,35 @@
             android:id="@+id/end_date"
             android:layout_marginLeft="220dp"
             android:textColorHint="@color/et_hint"/>
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/end_date"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="250dp"
+            android:background="@drawable/bt_like"
+            >
+            <ToggleButton
+                android:id="@+id/tgLike"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:textOn=""
+                android:textOff=""
+                android:padding="5dp"
+                android:background="@drawable/bt_like"
+                android:drawableTop="@drawable/sel_like"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="16sp"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="70dp"
+                android:textColor="@color/white"
+                android:id="@+id/likes"/>
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/wlb_quiz_name"
@@ -112,7 +137,7 @@
             android:id="@+id/btStart"
             style="@style/button_3_half"
             android:layout_below="@id/start_date"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             android:text="Start"
             android:textSize="18sp"
             android:layout_alignLeft="@id/start_date"/>
@@ -121,7 +146,7 @@
             android:id="@+id/btClose"
             style="@style/button_4_half"
             android:layout_below="@id/start_date"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             android:text="Close"
             android:layout_alignRight="@id/end_date"
             android:textSize="18sp" />

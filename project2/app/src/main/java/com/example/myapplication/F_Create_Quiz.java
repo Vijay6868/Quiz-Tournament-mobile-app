@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.myapplication.api.DataCallback;
 import com.example.myapplication.api.QuestionModelControllerAPI;
@@ -23,12 +24,8 @@ import com.example.myapplication.api.QuestionsModelList;
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.quizAndUsers.QuizManager;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class F_Create_Quiz extends Fragment implements DataCallback {
 
@@ -48,11 +45,12 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
     Button btCreate;
     QuestionModelControllerAPI questionModelControllerAPI;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment__create__quiz, container, false);
+        view = inflater.inflate(R.layout.f__create__quiz, container, false);
 
         inputs();
         handleSpDifficulty();
@@ -62,9 +60,12 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         handleDateSelection();
         wLabels();
         handleBtCreate();
+
         validator = new Validator();
         return view;
     }
+
+
 
     public void inputs(){
         name = view.findViewById(R.id.tbTitle);

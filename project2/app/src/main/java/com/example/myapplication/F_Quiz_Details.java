@@ -16,25 +16,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.quizAndUsers.QuizManager;
 
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link F_Quiz_Details#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class F_Quiz_Details extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -42,42 +34,19 @@ public class F_Quiz_Details extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment F_Quiz_Details.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static F_Quiz_Details newInstance(String param1, String param2) {
-        F_Quiz_Details fragment = new F_Quiz_Details();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
     //================================================================================
     View view;
     EditText qname;
-    TextView difficulty, category, noOfQues, w_sdate, w_edate, sdate,edate,w_title;
+    TextView difficulty, category, noOfQues, w_sdate, w_edate, sdate,edate,w_title,likes;
     Button btClose, btStart, btUpdate;
-    String _start_date, _end_date,_qname;
+    String _start_date, _end_date,_qname,_likes;
     Validator validator;
     Quiz quiz;
     QuizManager quizManager;
     ImageView iv_delete;
+    ToggleButton tgLike;
+    int originalLikes;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,6 +65,8 @@ public class F_Quiz_Details extends Fragment {
          sdate = view.findViewById(R.id.start_date);
          edate = view.findViewById(R.id.end_date);
          qname = view.findViewById(R.id.tbTitle);
+         tgLike  = view.findViewById(R.id.tgLike);
+         likes = view.findViewById(R.id.likes);
          setQuizDetails();
          inputs();
 
@@ -103,10 +74,36 @@ public class F_Quiz_Details extends Fragment {
          handleBtClose();
          handleDateSelection();
          handleBtUpdate();
+         handleTgLike();
 
+         originalLikes = quiz.getLikes();
         return view;
     }
+    private void handleTgLike() {
 
+
+
+        tgLike.setOnClickListener(new View.OnClickListener() {
+//            String like = likes.getText().toString();
+//            int parsedLike = Integer.parseInt(like);
+            @Override
+            public void onClick(View v) {
+                if(tgLike.isChecked()){
+                    int newLike = quiz.getLikes()+1;
+                    quiz.setLikes(newLike);
+                    _likes = String.valueOf(newLike);
+                    likes.setText(_likes);
+                    //likes
+                }
+                else{
+                    String _likes = String.valueOf(originalLikes);
+                    likes.setText(_likes);
+                    int newLike = quiz.getLikes()-1;
+                    quiz.setLikes(newLike);
+                }
+            }
+        });
+    }
     private void handleDeleteQuiz() {
         iv_delete = view.findViewById(R.id.btDelete);
         iv_delete.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +192,8 @@ public class F_Quiz_Details extends Fragment {
                 noOfQues.setText(quiz.getNoOfQues());
                 sdate.setText(quiz.getSdate());
                 edate.setText(quiz.getEdate());
+                _likes = String.valueOf(quiz.getLikes());
+                likes.setText(_likes);
             }
 
         }

@@ -23,8 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import okhttp3.internal.cache.DiskLruCache;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link F_Quizzes#newInstance} factory method to
@@ -84,7 +82,7 @@ public class F_Quizzes extends Fragment implements SelectedListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         view = inflater.inflate(R.layout.fragment_f__quizzes, container, false);
+         view = inflater.inflate(R.layout.f__quizzes, container, false);
         handleQuizSelectionSpin();
         readQuizData();
         recView();
