@@ -89,4 +89,12 @@ public class QuestionModel {
     public void setIncorrect_answers(JSONArray incorrect_answers) {
         this.incorrect_answers = incorrect_answers;
     }
+
+    public ArrayList<String> getIncorrectAnswers() {
+        return incorrectAnswers;
+    }
+
+    public void setIncorrectAnswers(ArrayList<String> incorrectAnswers) {
+        this.incorrectAnswers = incorrectAnswers;
+    }
 }

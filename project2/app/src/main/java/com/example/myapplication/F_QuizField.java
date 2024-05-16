@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -19,6 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Random;
 
 
 public class F_QuizField extends Fragment {
@@ -31,6 +35,7 @@ public class F_QuizField extends Fragment {
     TextView question, option1, option2, option3,option4,_true,_false, correct,incorrect;
     ArrayList<QuestionModel> questionArrayList;
     RadioGroup rg1, rg2;
+    Button btNext;
     public F_QuizField() {
         // Required empty public constructor
     }
@@ -51,15 +56,40 @@ public class F_QuizField extends Fragment {
          rg2 = view.findViewById(R.id.rg_true_or_false);
          correct = view.findViewById(R.id.tv_correct);
          incorrect = view.findViewById(R.id.tv_incorrect);
+         btNext = view.findViewById(R.id.btNext);
 
 
 
-
-
+         handleBtNext();
          fetchQuestions();
          displayQuestionOptions(quiz.getType());
 
         return view;
+    }
+
+    private void handleBtNext() {
+        btNext.setOnClickListener(new View.OnClickListener() {
+            int index=0;
+            int score =0;
+            @Override
+            public void onClick(View v) {
+               if(index < questionArrayList.size()){
+                   QuestionModel _question = questionArrayList.get(index);
+                   question.setText(_question.getQuestion());
+                   shuffleOptions(_question.getCorrect_answer(), _question.getIncorrectAnswers());
+                   index++;
+               }
+
+            }
+        });
+    }
+    public void shuffleOptions(String correct, ArrayList<String> _incorrect){
+        _incorrect.add(correct);
+        Collections.shuffle(_incorrect);
+        option1.setText(_incorrect.get(0));
+        option2.setText(_incorrect.get(1));
+        option3.setText(_incorrect.get(2));
+        option4.setText((_incorrect.get(3)));
     }
 
     private void displayQuestionOptions(String category) {
