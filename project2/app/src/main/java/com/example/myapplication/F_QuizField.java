@@ -2,64 +2,33 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication.api.QuestionModel;
 import com.example.myapplication.quizAndUsers.Quiz;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link F_QuizField#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class F_QuizField extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+
     Quiz quiz;
     View view;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    String quizID;
+    ArrayList<QuestionModel> questionArrayList;
     public F_QuizField() {
         // Required empty public constructor
-    }
-    public F_QuizField(Quiz quiz){
-        this.quiz = quiz;
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment F_QuizField.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static F_QuizField newInstance(String param1, String param2) {
-        F_QuizField fragment = new F_QuizField();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -67,6 +36,45 @@ public class F_QuizField extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.f__quiz_field, container, false);
+         fetchQuestions();
         return view;
+    }
+
+    private void fetchQuestions() {
+        questionArrayList = new ArrayList<>();
+        Bundle bundle = getArguments();
+        if(bundle !=null) {
+            quiz = (Quiz) bundle.getSerializable("quiz");
+            // use quiz object to populate the quiz_details fields
+            if (quiz != null) {
+                quizID = quiz.getQuiz_id();
+
+                FirebaseDatabase.getInstance().getReference().child("Questions").child(quizID)
+                        .addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot data: snapshot.getChildren()){
+                                    String question = data.child("question").getValue(String.class);
+                                    String correct_answer = data.child("correct_answer").getValue(String.class);
+                                    ArrayList<String> incorrect_answers = new ArrayList<>();
+                                    for(DataSnapshot incorrectAnswerSnapshot: data.child("incorrect_answers").getChildren()){
+                                        String incorrectAnswer = incorrectAnswerSnapshot.getValue(String.class);
+                                        incorrect_answers.add(incorrectAnswer);
+                                    }
+                                    QuestionModel singleQuestion = new QuestionModel(question, correct_answer,incorrect_answers);
+                                    questionArrayList.add(singleQuestion);
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+            }
+        }
     }
 }

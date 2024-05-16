@@ -337,7 +337,10 @@ public class F_Quiz_Details extends Fragment {
                 .commit();
     }
     public void displayQuizFieldFrag(){
-        F_QuizField fQuizField = new F_QuizField(quiz);
+        F_QuizField fQuizField = new F_QuizField();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("quiz", quiz);
+        fQuizField.setArguments(bundle);
 
         // Replace the current fragment with the deal details fragment
         getActivity().getSupportFragmentManager().beginTransaction()

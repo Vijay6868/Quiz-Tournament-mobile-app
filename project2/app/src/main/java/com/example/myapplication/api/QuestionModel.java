@@ -3,6 +3,8 @@ package com.example.myapplication.api;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
+
 /*      {
               "type": "multiple",
               "difficulty": "medium",
@@ -23,6 +25,7 @@ public class QuestionModel {
     String question;
     String correct_answer;
     JSONArray incorrect_answers;
+    ArrayList<String > incorrectAnswers;
 
     public QuestionModel(String type, String difficulty, String category, String question, String correct_answer, JSONArray incorrect_answers) {
         this.type = type;
@@ -31,6 +34,12 @@ public class QuestionModel {
         this.question = question;
         this.correct_answer = correct_answer;
         this.incorrect_answers = incorrect_answers;
+    }
+
+    public QuestionModel(String question, String correctAnswer, ArrayList<String> incorrectAnswers) {
+        this.question = question;
+        this.correct_answer = correctAnswer;
+        this.incorrectAnswers = incorrectAnswers;
     }
 
     public String getType() {
