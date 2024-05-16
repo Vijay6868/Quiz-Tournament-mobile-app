@@ -69,7 +69,7 @@ public class F_Quiz_Details extends Fragment {
          likes = view.findViewById(R.id.likes);
          setQuizDetails();
          inputs();
-
+         handbtStart();
          handleDeleteQuiz();
          handleBtClose();
          handleDateSelection();
@@ -79,13 +79,23 @@ public class F_Quiz_Details extends Fragment {
          originalLikes = quiz.getLikes();
         return view;
     }
+
+    private void handbtStart() {
+        btStart = view.findViewById(R.id.btStart);
+        btStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayQuizFieldFrag();
+            }
+        });
+    }
+
     private void handleTgLike() {
 
 
 
         tgLike.setOnClickListener(new View.OnClickListener() {
-//            String like = likes.getText().toString();
-//            int parsedLike = Integer.parseInt(like);
+
             @Override
             public void onClick(View v) {
                 if(tgLike.isChecked()){
@@ -323,6 +333,15 @@ public class F_Quiz_Details extends Fragment {
         // Replace the current fragment with the deal details fragment
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_frame, fQuizzes)
+                .addToBackStack(null)
+                .commit();
+    }
+    public void displayQuizFieldFrag(){
+        F_QuizField fQuizField = new F_QuizField(quiz);
+
+        // Replace the current fragment with the deal details fragment
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame, fQuizField)
                 .addToBackStack(null)
                 .commit();
     }

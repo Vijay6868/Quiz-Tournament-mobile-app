@@ -286,16 +286,12 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
                 w_edate.setVisibility(view.VISIBLE);
                 isValid = false;
             }
-
         }
-
         return isValid;
     }
 
     @Override
     public void onDataLoaded(QuestionsModelList list) {
-        //String category = list.getUserModelList().get(0).getCategory();
-        //Toast.makeText(getContext(), category, Toast.LENGTH_SHORT).show();
 
         Quiz quiz = new Quiz(_name,_start_date,_end_date,_type,_difficulty,_category,_no_of_ques,list);
         QuizManager quizManager = new QuizManager(quiz);
