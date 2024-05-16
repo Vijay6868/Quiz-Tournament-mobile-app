@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.example.myapplication.api.QuestionModel;
 import com.example.myapplication.quizAndUsers.Quiz;
@@ -26,7 +28,9 @@ public class F_QuizField extends Fragment {
     View view;
 
     String quizID;
+    TextView question, option1, option2, option3,option4,_true,_false, correct,incorrect;
     ArrayList<QuestionModel> questionArrayList;
+    RadioGroup rg1, rg2;
     public F_QuizField() {
         // Required empty public constructor
     }
@@ -36,8 +40,37 @@ public class F_QuizField extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.f__quiz_field, container, false);
+         question = view.findViewById(R.id.tv_question);
+         option1 = view.findViewById(R.id.option1);
+         option2 = view.findViewById(R.id.option2);
+         option3 = view.findViewById(R.id.option3);
+         option4 = view.findViewById(R.id.option4);
+         _true = view.findViewById(R.id.rb_true);
+         _false = view.findViewById(R.id.rb_false);
+         rg1 = view.findViewById(R.id.rg_multiple);
+         rg2 = view.findViewById(R.id.rg_true_or_false);
+         correct = view.findViewById(R.id.tv_correct);
+         incorrect = view.findViewById(R.id.tv_incorrect);
+
+
+
+
+
          fetchQuestions();
+         displayQuestionOptions(quiz.getType());
+
         return view;
+    }
+
+    private void displayQuestionOptions(String category) {
+        if(category.equals("multiple")){
+            rg2.setVisibility(View.GONE);
+        }
+        else {
+            rg1.setVisibility(View.GONE);
+        }
+        correct.setVisibility(View.GONE);
+        incorrect.setVisibility(View.GONE);
     }
 
     private void fetchQuestions() {
@@ -64,8 +97,6 @@ public class F_QuizField extends Fragment {
                                     QuestionModel singleQuestion = new QuestionModel(question, correct_answer,incorrect_answers);
                                     questionArrayList.add(singleQuestion);
                                 }
-
-
                             }
 
                             @Override

@@ -15,7 +15,19 @@
             android:text="Question: 1"
             android:id="@+id/tv_que_no"
             android:padding="30dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="50dp"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="130dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="260dp"
+            android:textSize="18sp"
+
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:text="Score: 10/10"
+            android:background="@drawable/bt_like"/>
+
         <TextView
             android:id="@+id/tv_question"
             android:layout_width="match_parent"
@@ -26,7 +38,7 @@
             android:layout_marginBottom="20dp"
             android:background="@color/et_background"
             android:padding="20dp"
-            android:text="When is the capital of India?"
+            android:text="What is the capital of India?"
             android:textSize="25sp"
             android:layout_below="@+id/tv_que_no"/>
         <LinearLayout
@@ -62,6 +74,13 @@
                     android:layout_height="wrap_content"
                     android:text="Calcutta"
                     android:textSize="22sp"/>
+                <RadioButton
+                    android:id="@+id/option4"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Banglore"
+                    android:textSize="22sp"/>
             </RadioGroup>
             <RadioGroup
                 android:id="@+id/rg_true_or_false"
@@ -74,20 +93,20 @@
                     android:id="@+id/rb_true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="true"
+                    android:text="True"
                     android:textSize="22sp"/>
                 <RadioButton
                     android:id="@+id/rb_false"
                     android:layout_marginTop="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="false"
+                    android:text="False"
                     android:textSize="22sp"/>
             </RadioGroup>
 
         </LinearLayout>
         <TextView
-            android:id="@+id/tv_wrong"
+            android:id="@+id/tv_incorrect"
             android:layout_marginTop="600dp"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
@@ -110,6 +129,14 @@
             android:padding="10dp"
             android:background="@drawable/bg_correct"
             android:textColor="@color/white"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:layout_marginTop="530dp"
+            android:textSize="18sp"
+            style="@style/button_2"
+            android:drawableRight="@drawable/ic_right_arrow"/>
     </RelativeLayout>
 
 </FrameLayout>
