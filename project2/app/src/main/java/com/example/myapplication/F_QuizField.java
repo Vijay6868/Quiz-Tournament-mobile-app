@@ -33,9 +33,11 @@ public class F_QuizField extends Fragment {
 
     String quizID;
     TextView question, option1, option2, option3,option4,_true,_false, correct,incorrect;
+    TextView quNo;
     ArrayList<QuestionModel> questionArrayList;
     RadioGroup rg1, rg2;
     Button btNext;
+    QuestionModel _question;
     public F_QuizField() {
         // Required empty public constructor
     }
@@ -57,27 +59,35 @@ public class F_QuizField extends Fragment {
          correct = view.findViewById(R.id.tv_correct);
          incorrect = view.findViewById(R.id.tv_incorrect);
          btNext = view.findViewById(R.id.btNext);
+         quNo = view.findViewById(R.id.tv_que_no);
 
 
-
-         handleBtNext();
          fetchQuestions();
+
          displayQuestionOptions(quiz.getType());
 
         return view;
     }
 
     private void handleBtNext() {
+
+        QuestionModel singlequestion = questionArrayList.get(0);
+        String que = singlequestion.getQuestion();
+        question.setText(que);
+        shuffleOptions(singlequestion.getCorrect_answer(),singlequestion.getIncorrectAnswers());
+
         btNext.setOnClickListener(new View.OnClickListener() {
-            int index=0;
+            int index=1;
             int score =0;
+
             @Override
             public void onClick(View v) {
                if(index < questionArrayList.size()){
-                   QuestionModel _question = questionArrayList.get(index);
+                   _question = questionArrayList.get(index);
                    question.setText(_question.getQuestion());
                    shuffleOptions(_question.getCorrect_answer(), _question.getIncorrectAnswers());
                    index++;
+                   quNo.setText("Question: "+index);
                }
 
             }
@@ -127,6 +137,7 @@ public class F_QuizField extends Fragment {
                                     QuestionModel singleQuestion = new QuestionModel(question, correct_answer,incorrect_answers);
                                     questionArrayList.add(singleQuestion);
                                 }
+                                handleBtNext();
                             }
 
                             @Override
