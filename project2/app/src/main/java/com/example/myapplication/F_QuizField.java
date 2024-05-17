@@ -79,11 +79,16 @@ public class F_QuizField extends Fragment {
         btCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(selOption.equals(correctAns)){
-                    correct.setVisibility(View.VISIBLE);
-                }else {
-                    incorrect.setVisibility(View.VISIBLE);
+                if( selOption != null){
+                    if(selOption.equals(correctAns)){
+                        correct.setVisibility(View.VISIBLE);
+                    }else {
+                        incorrect.setVisibility(View.VISIBLE);
+                    }
+                } else {
+                    Toast.makeText(getContext(), "make selection", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }
@@ -93,8 +98,12 @@ public class F_QuizField extends Fragment {
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton player_selection = view.findViewById(checkedId);
-                selOption = player_selection.getText().toString();
+                if(checkedId!= -1){
+                    RadioButton player_selection = view.findViewById(checkedId);
+                    selOption = player_selection.getText().toString();
+                    //rg1.clearCheck();
+                }
+
                 //Toast.makeText(getContext(), "Selected: " + selOption, Toast.LENGTH_SHORT).show();
             }
 
@@ -104,13 +113,20 @@ public class F_QuizField extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton player_selection = view.findViewById(checkedId);
                 selOption = player_selection.getText().toString();
+
             }
         });
         return selOption;
     }
 
-    private void handleBtNext() {
 
+    private void handleBtNext() {
+        rg1.clearCheck();
+//        if(quiz.getType().equals("multiple")){
+//            rg1.clearCheck();
+//        }else {
+//            //rg2.clearCheck();
+//        }
         QuestionModel singleQuestion = questionArrayList.get(0);
         String que = singleQuestion.getQuestion();
         question.setText(que);
@@ -147,7 +163,6 @@ public class F_QuizField extends Fragment {
         }
 
     }
-
     private void displayQuestionOptions(String category) {
         if(category.equals("multiple")){
             rg2.setVisibility(View.GONE);
@@ -160,6 +175,8 @@ public class F_QuizField extends Fragment {
     public void answerCheckDialog(){
         correct.setVisibility(View.GONE);
         incorrect.setVisibility(View.GONE);
+        
+
     }
 
     private void fetchQuestions() {
