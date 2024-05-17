@@ -92,8 +92,6 @@ public class F_Quiz_Details extends Fragment {
 
     private void handleTgLike() {
 
-
-
         tgLike.setOnClickListener(new View.OnClickListener() {
 
             @Override
