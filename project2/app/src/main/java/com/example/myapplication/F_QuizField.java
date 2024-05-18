@@ -152,16 +152,38 @@ public class F_QuizField extends Fragment {
                    question.setText(_question.getQuestion());
                    correctAns= _question.getCorrect_answer();
                    shuffleOptions(correctAns, _question.getIncorrectAnswers());
-                   index++;
+
+                   if((index+1)==questionArrayList.size()){
+                       btNext.setText("FINISH");
+                   }
+
+
                    quNo.setText("Question: "+index);
                    handleBtCheck();
                    answerCheckDialog();
                    clearSelection();
+                   if((index+1)==questionArrayList.size()){
+                       btNext.setText("FINISH");
+                   }
+                   index++;
+               }
+               else {
+                   displayScoreFrag();
                }
                 selOption = null;
 
             }
         });
+    }
+    public void displayScoreFrag(){
+        F_Display_Score fDisplayScore = new F_Display_Score();
+        //fDisplayScore.setArguments();
+
+        // Replace the current fragment with the deal details fragment
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_frame, fDisplayScore)
+                .addToBackStack(null)
+                .commit();
     }
     public void clearSelection(){
         if(quizType.equals("multiple")){
