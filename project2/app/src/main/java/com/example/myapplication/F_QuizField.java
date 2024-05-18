@@ -33,15 +33,17 @@ public class F_QuizField extends Fragment {
     Quiz quiz;
     View view;
 
-    String quizID;
+    String quizID,quizType;
     TextView question, option1, option2, option3,option4,_true,_false, correct,incorrect;
-    TextView quNo;
+    TextView quNo,tv_score;
     ArrayList<QuestionModel> questionArrayList;
     RadioGroup rg1, rg2;
     Button btNext, btCheck;
     QuestionModel _question;
     String playerSelection;
-    String selOption, correctAns;
+    String selOption, correctAns,_score;
+    int score;
+
     public F_QuizField() {
         // Required empty public constructor
     }
@@ -65,14 +67,21 @@ public class F_QuizField extends Fragment {
          btNext = view.findViewById(R.id.btNext);
          quNo = view.findViewById(R.id.tv_que_no);
          btCheck = view.findViewById(R.id.btCheck);
+         tv_score = view.findViewById(R.id.score);
+
 
          fetchQuestions();
-
-         displayQuestionOptions(quiz.getType());
+         quizType = quiz.getType();
+         displayQuestionOptions(quizType);
          handlePlayerSelection();
          handleBtCheck();
-
+         setScore();
+         score =0;
         return view;
+    }
+    public void setScore(){
+        _score = String.valueOf(score);
+        tv_score.setText(_score);
     }
 
     private void handleBtCheck() {
@@ -82,13 +91,14 @@ public class F_QuizField extends Fragment {
                 if( selOption != null){
                     if(selOption.equals(correctAns)){
                         correct.setVisibility(View.VISIBLE);
+                        score = score+1;
                     }else {
                         incorrect.setVisibility(View.VISIBLE);
                     }
                 } else {
                     Toast.makeText(getContext(), "make selection", Toast.LENGTH_SHORT).show();
                 }
-
+                //selOption = null;
             }
         });
     }
@@ -101,7 +111,6 @@ public class F_QuizField extends Fragment {
                 if(checkedId!= -1){
                     RadioButton player_selection = view.findViewById(checkedId);
                     selOption = player_selection.getText().toString();
-                    //rg1.clearCheck();
                 }
 
                 //Toast.makeText(getContext(), "Selected: " + selOption, Toast.LENGTH_SHORT).show();
@@ -111,8 +120,10 @@ public class F_QuizField extends Fragment {
         rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton player_selection = view.findViewById(checkedId);
-                selOption = player_selection.getText().toString();
+                if(checkedId!= -1){
+                    RadioButton player_selection = view.findViewById(checkedId);
+                    selOption = player_selection.getText().toString();
+                }
 
             }
         });
@@ -121,23 +132,21 @@ public class F_QuizField extends Fragment {
 
 
     private void handleBtNext() {
-        rg1.clearCheck();
-//        if(quiz.getType().equals("multiple")){
-//            rg1.clearCheck();
-//        }else {
-//            //rg2.clearCheck();
-//        }
+
+
         QuestionModel singleQuestion = questionArrayList.get(0);
         String que = singleQuestion.getQuestion();
         question.setText(que);
         shuffleOptions(singleQuestion.getCorrect_answer(),singleQuestion.getIncorrectAnswers());
 
         btNext.setOnClickListener(new View.OnClickListener() {
+
             int index=1;
-            int score =0;
+
 
             @Override
             public void onClick(View v) {
+                setScore();
                if(index < questionArrayList.size()){
                    _question = questionArrayList.get(index);
                    question.setText(_question.getQuestion());
@@ -147,10 +156,20 @@ public class F_QuizField extends Fragment {
                    quNo.setText("Question: "+index);
                    handleBtCheck();
                    answerCheckDialog();
+                   clearSelection();
                }
+                selOption = null;
 
             }
         });
+    }
+    public void clearSelection(){
+        if(quizType.equals("multiple")){
+            rg1.clearCheck();
+        }
+        else{
+            rg2.clearCheck();
+        }
     }
     public void shuffleOptions(String correct, ArrayList<String> _incorrect){
         if(quiz.getType().equals("multiple")){

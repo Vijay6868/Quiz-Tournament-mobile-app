@@ -22,7 +22,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="260dp"
             android:textSize="18sp"
-
+            android:id="@+id/score"
             android:paddingLeft="10dp"
             android:textColor="@color/white"
             android:text="Score: 10/10"
