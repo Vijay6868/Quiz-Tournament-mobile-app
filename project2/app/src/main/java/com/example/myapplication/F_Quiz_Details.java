@@ -28,19 +28,10 @@ import java.util.Calendar;
 
 public class F_Quiz_Details extends Fragment {
 
-
-    private String mParam1;
-    private String mParam2;
-
-    public F_Quiz_Details() {
-        // Required empty public constructor
-    }
-
-    //================================================================================
     View view;
     EditText qname;
     TextView difficulty, category, noOfQues, w_sdate, w_edate, sdate,edate,w_title,likes;
-    Button btClose, btStart, btUpdate;
+    Button btClose, btStart, btUpdate, btComing, btQuizOver;
     String _start_date, _end_date,_qname,_likes, userType;
     Validator validator;
     Quiz quiz;
@@ -48,6 +39,10 @@ public class F_Quiz_Details extends Fragment {
     ImageView iv_delete;
     ToggleButton tgLike;
     int originalLikes;
+
+    public F_Quiz_Details() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +64,8 @@ public class F_Quiz_Details extends Fragment {
          qname = view.findViewById(R.id.tbTitle);
          tgLike  = view.findViewById(R.id.tgLike);
          likes = view.findViewById(R.id.likes);
+         btQuizOver = view.findViewById(R.id.btQuizOver);
+         btComing = view.findViewById(R.id.btComing);
          setQuizDetails();
 
          inputs();
@@ -79,7 +76,10 @@ public class F_Quiz_Details extends Fragment {
          handleBtUpdate();
          handleTgLike();
          displayFeatures();
-         originalLikes = quiz.getLikes();
+         pastQuiz();
+         futureQuiz();
+
+        originalLikes = quiz.getLikes();
         return view;
     }
 
@@ -95,10 +95,33 @@ public class F_Quiz_Details extends Fragment {
                     sdate.setEnabled(false);
                     edate.setEnabled(false);
                     qname.setEnabled(false);
+                    pastQuiz();
 
                 }
             }
         });
+
+    }
+    public void pastQuiz(){
+        boolean check = validator.isValidDate(_end_date);
+        if(!check){
+            btStart.setVisibility(View.INVISIBLE);
+            btQuizOver.setVisibility(View.VISIBLE);
+        }
+    }
+    public void futureQuiz(){
+        boolean check = false;
+        if(validator.isValidDate(_start_date)){
+            btStart.setVisibility(View.INVISIBLE);
+            btComing.setVisibility(View.VISIBLE);
+        }
+        if(validator.isToday(_start_date)){
+            btStart.setVisibility(View.VISIBLE);
+            btComing.setVisibility(View.INVISIBLE);
+        }
+
+
+
 
     }
 

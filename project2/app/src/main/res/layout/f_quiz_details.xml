@@ -143,6 +143,25 @@
             android:layout_alignLeft="@id/start_date"/>
 
         <Button
+            android:id="@+id/btQuizOver"
+            style="@style/button_2_half"
+            android:layout_below="@id/start_date"
+            android:layout_marginTop="80dp"
+            android:text="Quiz Over"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            android:layout_alignLeft="@id/start_date"/>
+        <Button
+            android:id="@+id/btComing"
+            style="@style/button_3_half"
+            android:layout_below="@id/start_date"
+            android:layout_marginTop="80dp"
+            android:text="Coming!!!"
+            android:textSize="18sp"
+            android:layout_alignLeft="@id/start_date"
+            android:visibility="invisible"/>
+
+        <Button
             android:id="@+id/btClose"
             style="@style/button_4_half"
             android:layout_below="@id/start_date"

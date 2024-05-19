@@ -77,5 +77,26 @@ public class Validator {
 
 
     }
+    public static boolean isToday(String dateString) {
+        // Define the date format that matches the input string
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            // Parse the input date string
+            Date inputDate = dateFormat.parse(dateString);
+
+            // Get today's date without time part
+            Date today = new Date();
+            String todayString = dateFormat.format(today);
+            Date todayDate = dateFormat.parse(todayString);
+
+            // Compare the dates
+            return inputDate.equals(todayDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 }
