@@ -20,6 +20,8 @@ import android.widget.ToggleButton;
 
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.quizAndUsers.QuizManager;
+import com.example.myapplication.quizAndUsers.UserManager;
+import com.example.myapplication.quizAndUsers.UserTypeCallback;
 
 import java.util.Calendar;
 
@@ -39,7 +41,7 @@ public class F_Quiz_Details extends Fragment {
     EditText qname;
     TextView difficulty, category, noOfQues, w_sdate, w_edate, sdate,edate,w_title,likes;
     Button btClose, btStart, btUpdate;
-    String _start_date, _end_date,_qname,_likes;
+    String _start_date, _end_date,_qname,_likes, userType;
     Validator validator;
     Quiz quiz;
     QuizManager quizManager;
@@ -68,6 +70,7 @@ public class F_Quiz_Details extends Fragment {
          tgLike  = view.findViewById(R.id.tgLike);
          likes = view.findViewById(R.id.likes);
          setQuizDetails();
+
          inputs();
          handbtStart();
          handleDeleteQuiz();
@@ -75,9 +78,28 @@ public class F_Quiz_Details extends Fragment {
          handleDateSelection();
          handleBtUpdate();
          handleTgLike();
-
+         displayFeatures();
          originalLikes = quiz.getLikes();
         return view;
+    }
+
+    private void displayFeatures() {
+        UserManager userManager = UserManager.getInstance();
+        userManager.getUserType(new UserTypeCallback() {
+            @Override
+            public void onCallback(String user_Type) {
+                userType = user_Type;
+                if(userType.equals("Players")){
+                    iv_delete.setVisibility(View.INVISIBLE);
+                    btUpdate.setVisibility(View.INVISIBLE);
+                    sdate.setEnabled(false);
+                    edate.setEnabled(false);
+                    qname.setEnabled(false);
+
+                }
+            }
+        });
+
     }
 
     private void handbtStart() {

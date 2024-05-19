@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.api.QuestionModel;
 import com.example.myapplication.quizAndUsers.Quiz;
+import com.example.myapplication.quizAndUsers.QuizManager;
+import com.example.myapplication.quizAndUsers.UserManager;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -132,10 +134,8 @@ public class F_QuizField extends Fragment {
         return selOption;
     }
 
-
     private void handleBtNext() {
 
-        int firstQue =1;
         QuestionModel singleQuestion = questionArrayList.get(0);
         String que = singleQuestion.getQuestion();
         question.setText(que);
@@ -147,7 +147,6 @@ public class F_QuizField extends Fragment {
 
             int index=1;
 
-
             @Override
             public void onClick(View v) {
                 setScore();
@@ -156,13 +155,6 @@ public class F_QuizField extends Fragment {
                    question.setText(_question.getQuestion());
                    correctAns= _question.getCorrect_answer();
                    shuffleOptions(correctAns, _question.getIncorrectAnswers());
-
-//                   if((index+1)==questionArrayList.size()){
-//                       btNext.setText("FINISH");
-//                   }
-
-
-
 
                    answerCheckDialog();
                    clearSelection();
@@ -173,6 +165,8 @@ public class F_QuizField extends Fragment {
                    quNo.setText("Question: "+index);
                }
                else {
+                   UserManager userManager = UserManager.getInstance();
+                   userManager.updateQuizCompleted(quizID);
                    displayScoreFrag();
                }
                 selOption = null;
