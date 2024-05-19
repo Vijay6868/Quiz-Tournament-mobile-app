@@ -91,9 +91,11 @@ public class F_QuizField extends Fragment {
                 if( selOption != null){
                     if(selOption.equals(correctAns)){
                         correct.setVisibility(View.VISIBLE);
+                        incorrect.setVisibility(View.INVISIBLE);
                         score = score+1;
                     }else {
                         incorrect.setVisibility(View.VISIBLE);
+                        correct.setVisibility(View.INVISIBLE);
                     }
                 } else {
                     Toast.makeText(getContext(), "make selection", Toast.LENGTH_SHORT).show();
@@ -133,11 +135,13 @@ public class F_QuizField extends Fragment {
 
     private void handleBtNext() {
 
-
+        int firstQue =1;
         QuestionModel singleQuestion = questionArrayList.get(0);
         String que = singleQuestion.getQuestion();
         question.setText(que);
+        correctAns = singleQuestion.getCorrect_answer();
         shuffleOptions(singleQuestion.getCorrect_answer(),singleQuestion.getIncorrectAnswers());
+        handleBtCheck();
 
         btNext.setOnClickListener(new View.OnClickListener() {
 
@@ -153,19 +157,20 @@ public class F_QuizField extends Fragment {
                    correctAns= _question.getCorrect_answer();
                    shuffleOptions(correctAns, _question.getIncorrectAnswers());
 
-                   if((index+1)==questionArrayList.size()){
-                       btNext.setText("FINISH");
-                   }
+//                   if((index+1)==questionArrayList.size()){
+//                       btNext.setText("FINISH");
+//                   }
 
 
-                   quNo.setText("Question: "+index);
-                   handleBtCheck();
+
+
                    answerCheckDialog();
                    clearSelection();
                    if((index+1)==questionArrayList.size()){
                        btNext.setText("FINISH");
                    }
                    index++;
+                   quNo.setText("Question: "+index);
                }
                else {
                    displayScoreFrag();
@@ -178,6 +183,9 @@ public class F_QuizField extends Fragment {
     public void displayScoreFrag(){
         F_Display_Score fDisplayScore = new F_Display_Score();
         //fDisplayScore.setArguments();
+        Bundle bundle = new Bundle();
+        bundle.putInt("final_score", score);
+        fDisplayScore.setArguments(bundle);
 
         // Replace the current fragment with the deal details fragment
         getActivity().getSupportFragmentManager().beginTransaction()
