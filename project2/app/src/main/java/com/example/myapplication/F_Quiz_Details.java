@@ -39,6 +39,7 @@ public class F_Quiz_Details extends Fragment {
     ImageView iv_delete;
     ToggleButton tgLike;
     int originalLikes;
+    UserManager userManager;
 
     public F_Quiz_Details() {
         // Required empty public constructor
@@ -76,10 +77,12 @@ public class F_Quiz_Details extends Fragment {
          handleBtUpdate();
          handleTgLike();
          displayFeatures();
-         pastQuiz();
-         futureQuiz();
+        quizManager = new QuizManager(quiz);
+        userManager = UserManager.getInstance();
+
 
         originalLikes = quiz.getLikes();
+
         return view;
     }
 
@@ -96,6 +99,7 @@ public class F_Quiz_Details extends Fragment {
                     edate.setEnabled(false);
                     qname.setEnabled(false);
                     pastQuiz();
+                    futureQuiz();
 
                 }
             }
@@ -120,9 +124,6 @@ public class F_Quiz_Details extends Fragment {
             btComing.setVisibility(View.INVISIBLE);
         }
 
-
-
-
     }
 
     private void handbtStart() {
@@ -141,11 +142,14 @@ public class F_Quiz_Details extends Fragment {
 
             @Override
             public void onClick(View v) {
+
+
                 if(tgLike.isChecked()){
                     int newLike = quiz.getLikes()+1;
                     quiz.setLikes(newLike);
                     _likes = String.valueOf(newLike);
                     likes.setText(_likes);
+                    userManager.updatelikedQuizees(quiz.getQuiz_id(),true);
                     //likes
                 }
                 else{
@@ -153,7 +157,9 @@ public class F_Quiz_Details extends Fragment {
                     likes.setText(_likes);
                     int newLike = quiz.getLikes()-1;
                     quiz.setLikes(newLike);
+                    userManager.updatelikedQuizees(quiz.getQuiz_id(),false);
                 }
+                quizManager.updateLikes();
             }
         });
     }
@@ -170,7 +176,7 @@ public class F_Quiz_Details extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // User clicked Yes, delete the quiz
                         Toast.makeText(getContext(), "Quiz Deleted!!", Toast.LENGTH_SHORT).show();
-                        quizManager = new QuizManager(quiz);
+                       // quizManager = new QuizManager(quiz);
                         quizManager.deleteQuizData(); // Call your method to delete the quiz here
                         displayQuizzesFrag();
                     }
@@ -212,7 +218,7 @@ public class F_Quiz_Details extends Fragment {
                     quiz.setSdate((_start_date));
                     quiz.setQname(_qname);
 
-                    quizManager = new QuizManager(quiz);
+                    //quizManager = new QuizManager(quiz);
                     quizManager.updateQuizData();
                 }
 
@@ -239,10 +245,10 @@ public class F_Quiz_Details extends Fragment {
              quiz = (Quiz) bundle.getSerializable("quiz");
             // use quiz object to populate the quiz_details fields
             if(quiz != null){
-                qname.setText(quiz.getQname());
-                difficulty.setText(quiz.getDifficulty());
-                category.setText(quiz.getCategory());
-                noOfQues.setText(quiz.getNoOfQues());
+                qname.setText("Name: "+quiz.getQname());
+                difficulty.setText("Difficulty: "+ quiz.getDifficulty());
+                category.setText("Category: "+quiz.getCategory());
+                noOfQues.setText("No. of Questions: "+quiz.getNoOfQues());
                 sdate.setText(quiz.getSdate());
                 edate.setText(quiz.getEdate());
                 _likes = String.valueOf(quiz.getLikes());

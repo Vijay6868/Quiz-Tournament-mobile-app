@@ -95,6 +95,16 @@ public class UserManager {
 
 
     }
+    public void updatelikedQuizees(String quizID,boolean isLikes){
+        DatabaseReference userLikeRef = FirebaseDatabase.getInstance().getReference().child("User_Liked_Quizzes")
+                .child(userId);
+        if(isLikes){
+            userLikeRef.child(quizID).setValue(true);
+        }
+        else{
+            userLikeRef.child(quizID).setValue(false);
+        }
+    }
 
     public void setUserType(String userType) {
         this.userType = userType;

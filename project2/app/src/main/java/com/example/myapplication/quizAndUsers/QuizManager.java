@@ -89,6 +89,11 @@ public class QuizManager {
 
         return incorrect_answers;
     }
+    public void updateLikes(){
+        HashMap<String, Object> updatesLikes = new HashMap<>();
+        updatesLikes.put("likes",quiz.getLikes());
+        updateQuizOrLikes(updatesLikes);
+    }
     public void updateQuizData(){
 
         HashMap<String, Object> update_data = new HashMap<>();
@@ -97,6 +102,10 @@ public class QuizManager {
         update_data.put("sdate",quiz.getSdate());
         update_data.put("edate",quiz.getEdate());
 
+        updateQuizOrLikes(update_data);
+    }
+
+    private void updateQuizOrLikes(HashMap<String, Object> update_data) {
         DatabaseReference quizRef = FirebaseDatabase.getInstance().getReference()
                 .child("Quizzes");
 
@@ -112,6 +121,7 @@ public class QuizManager {
             }
         });
     }
+
     public void deleteQuizData(){
         DatabaseReference quizRef = FirebaseDatabase.getInstance().getReference()
                 .child("Quizzes");

@@ -166,6 +166,19 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:drawableLeft="@drawable/ic_check"/>
+        <TextView
+            android:id="@+id/tv_answer"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_correct"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Answer"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:textSize="22sp"
+            android:padding="10dp"
+            android:textColor="@color/bt_color_3"/>
     </RelativeLayout>
 
 </FrameLayout>

@@ -37,7 +37,7 @@ public class F_QuizField extends Fragment {
 
     String quizID,quizType;
     TextView question, option1, option2, option3,option4,_true,_false, correct,incorrect;
-    TextView quNo,tv_score;
+    TextView quNo,tv_score,answer;
     ArrayList<QuestionModel> questionArrayList;
     RadioGroup rg1, rg2;
     Button btNext, btCheck;
@@ -70,6 +70,7 @@ public class F_QuizField extends Fragment {
          quNo = view.findViewById(R.id.tv_que_no);
          btCheck = view.findViewById(R.id.btCheck);
          tv_score = view.findViewById(R.id.score);
+         answer = view.findViewById(R.id.tv_answer);
 
 
          fetchQuestions();
@@ -97,6 +98,9 @@ public class F_QuizField extends Fragment {
                         score = score+1;
                     }else {
                         incorrect.setVisibility(View.VISIBLE);
+
+                        answer.setText("Correct Answer: "+correctAns);
+                        answer.setVisibility(View.VISIBLE);
                         correct.setVisibility(View.INVISIBLE);
                     }
                 } else {
@@ -218,8 +222,7 @@ public class F_QuizField extends Fragment {
     public void answerCheckDialog(){
         correct.setVisibility(View.GONE);
         incorrect.setVisibility(View.GONE);
-        
-
+        answer.setVisibility(View.GONE);
     }
 
     private void fetchQuestions() {
