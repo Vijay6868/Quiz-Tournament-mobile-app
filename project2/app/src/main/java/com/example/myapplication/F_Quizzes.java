@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.recyclerview.RVAdapter;
@@ -76,6 +77,7 @@ public class F_Quizzes extends Fragment implements SelectedListener{
     //ArrayList<String> singleQuiz;
     Quiz singleQuiz;
     RecyclerView recyclerView;
+    RVAdapter adapter;
 
 
     @Override
@@ -92,11 +94,11 @@ public class F_Quizzes extends Fragment implements SelectedListener{
     public void handleQuizSelectionSpin(){
         sp_quiz_selection = view.findViewById(R.id.sp_quizzes);
 
-
         sp_quiz_selection.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                String selection = parent.getItemAtPosition(position).toString();
+                filterQuizzes(selection);
             }
 
             @Override
@@ -113,6 +115,23 @@ public class F_Quizzes extends Fragment implements SelectedListener{
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_layout, options);
 
         sp_quiz_selection.setAdapter(adapter);
+    }
+    public void filterQuizzes(String filter){
+        ArrayList<Quiz> filteredQuizzes = new ArrayList<>();
+
+        Validator validator = new Validator();
+        for(Quiz quiz: quizArrayList){
+            switch(filter){
+                case "PAST QUIZZES":
+                    String date = quiz.getEdate();
+                    if(!validator.isValidDate(date)){
+                        filteredQuizzes.add(quiz);
+                        break;
+                    }
+            }
+
+        }
+        adapter.updateQuizzesList(filteredQuizzes);
     }
     private void readQuizData() {
         //singleQuiz = new ArrayList<>();
@@ -149,7 +168,7 @@ public class F_Quizzes extends Fragment implements SelectedListener{
     }
     public void recView(){
         recyclerView = view.findViewById(R.id.f_rv_item);
-        RVAdapter adapter = new RVAdapter(quizArrayList, this);
+        adapter = new RVAdapter(quizArrayList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 

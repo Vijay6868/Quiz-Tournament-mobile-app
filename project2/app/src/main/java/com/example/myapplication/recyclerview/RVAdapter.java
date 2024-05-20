@@ -71,4 +71,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
     public int getItemCount() {
         return quizArrayList.size();
     }
+
+    public void updateQuizzesList(ArrayList<Quiz> updatedList){
+        quizArrayList = new ArrayList<>(updatedList);
+        notifyDataSetChanged();
+    }
 }
+
