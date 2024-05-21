@@ -21,14 +21,20 @@ public class UserManager {
     private String userName;
     private String email;
     private String userType;
+    private DatabaseReference userLikeRef;
+    boolean isliked;
 
     // Private constructor to prevent instantiation
     private UserManager() {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-            userId = firebaseUser.getUid();
+            userId = "8TPMkWHkmgeTdcTD4ohveX9zPJD3";//firebaseUser.getUid();
             userName = firebaseUser.getDisplayName();
             email = firebaseUser.getEmail();
+            isliked = false;
+
+            userLikeRef = FirebaseDatabase.getInstance().getReference().child("User_Liked_Quizzes")
+                    .child(userId);
         }
     }
     //FirebaseDatabase.getInstance().getReference().child(_userType).child(uid).setValue(m);
@@ -96,8 +102,8 @@ public class UserManager {
 
     }
     public void updatelikedQuizees(String quizID,boolean isLikes){
-        DatabaseReference userLikeRef = FirebaseDatabase.getInstance().getReference().child("User_Liked_Quizzes")
-                .child(userId);
+        //DatabaseReference userLikeRef = FirebaseDatabase.getInstance().getReference().child("User_Liked_Quizzes")
+                //.child(userId);
         if(isLikes){
             userLikeRef.child(quizID).setValue(true);
         }
@@ -131,6 +137,45 @@ public class UserManager {
             userName = firebaseUser.getDisplayName();
             email = firebaseUser.getEmail();
         }
+    }
+    public void isLiked(LikeCallback callback,String quizID){
+
+        userLikeRef.child(quizID).addListenerForSingleValueEvent(new ValueEventListener() {
+            boolean isliked = false;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getValue(Boolean.class) != null) {
+                    isliked = snapshot.getValue(Boolean.class);
+                }
+                callback.onCallback(isliked);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+//        userLikeRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if(snapshot.exists()){
+//                    for(DataSnapshot id : snapshot.getChildren()){
+//
+//                        isliked = id.child(quizID).getValue(Boolean.class);
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+
+
     }
 }
 

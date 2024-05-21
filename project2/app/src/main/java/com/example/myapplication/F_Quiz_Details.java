@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.example.myapplication.quizAndUsers.LikeCallback;
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.quizAndUsers.QuizManager;
 import com.example.myapplication.quizAndUsers.UserManager;
@@ -77,13 +78,30 @@ public class F_Quiz_Details extends Fragment {
          handleBtUpdate();
          handleTgLike();
          displayFeatures();
+
         quizManager = new QuizManager(quiz);
         userManager = UserManager.getInstance();
 
-
+        tgLikeInitialState();
         originalLikes = quiz.getLikes();
 
         return view;
+    }
+
+    private void tgLikeInitialState() {
+        userManager.isLiked(new LikeCallback() {
+            @Override
+            public void onCallback(boolean isLike) {
+                tgLike.setChecked(isLike);
+            }
+        }, quiz.getQuiz_id());
+//        boolean state = userManager.isLiked(new LikeCallback() {
+//            @Override
+//            public void onCallback(boolean isLike) {
+//
+//            }
+//        }, quiz.getQuiz_id());
+//        tgLike.setChecked(state);
     }
 
     private void displayFeatures() {
@@ -220,6 +238,7 @@ public class F_Quiz_Details extends Fragment {
 
                     //quizManager = new QuizManager(quiz);
                     quizManager.updateQuizData();
+                    Toast.makeText(getContext(), "Quiz Updated", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -245,7 +264,7 @@ public class F_Quiz_Details extends Fragment {
              quiz = (Quiz) bundle.getSerializable("quiz");
             // use quiz object to populate the quiz_details fields
             if(quiz != null){
-                qname.setText("Name: "+quiz.getQname());
+                qname.setText(quiz.getQname());
                 difficulty.setText("Difficulty: "+ quiz.getDifficulty());
                 category.setText("Category: "+quiz.getCategory());
                 noOfQues.setText("No. of Questions: "+quiz.getNoOfQues());
