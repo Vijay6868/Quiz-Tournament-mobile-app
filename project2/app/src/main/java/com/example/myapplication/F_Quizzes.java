@@ -108,31 +108,43 @@ public class F_Quizzes extends Fragment implements SelectedListener{
 
         });
         ArrayList<String> options = new ArrayList<>();
-        options.add("ONGOING QUIZZES");
+        options.add("ALL QUIZZES");
         options.add("COMING QUIZZES");
         options.add("PAST QUIZZES");
-        options.add("ALL QUIZZES");
+        options.add("ONGOING QUIZZES");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_layout, options);
 
         sp_quiz_selection.setAdapter(adapter);
     }
-    public void filterQuizzes(String filter){
+    public void filterQuizzes(String filter) {
         ArrayList<Quiz> filteredQuizzes = new ArrayList<>();
-
         Validator validator = new Validator();
-        for(Quiz quiz: quizArrayList){
-            switch(filter){
+        for (Quiz quiz : quizArrayList) {
+            switch (filter) {
                 case "PAST QUIZZES":
-                    String date = quiz.getEdate();
-                    if(!validator.isValidDate(date)){
+                    if (!validator.isValidDate(quiz.getEdate())) {
                         filteredQuizzes.add(quiz);
-                        break;
                     }
+                    break;
+                case "ONGOING QUIZZES":
+                    if (validator.isDateTodayOrGreater(quiz.getEdate()) &&
+                            validator.isDateTodayOrSmaller(quiz.getSdate())) {
+                        filteredQuizzes.add(quiz);
+                    }
+                    break;
+                case "COMING QUIZZES":
+                    if (validator.isDateGreaterThanToday(quiz.getSdate())) {
+                        filteredQuizzes.add(quiz);
+                    }
+                    break;
+                default:
+                    filteredQuizzes.add(quiz);
+                    break;
             }
-
         }
         adapter.updateQuizzesList(filteredQuizzes);
     }
+
     private void readQuizData() {
         //singleQuiz = new ArrayList<>();
         quizArrayList = new ArrayList<>();
