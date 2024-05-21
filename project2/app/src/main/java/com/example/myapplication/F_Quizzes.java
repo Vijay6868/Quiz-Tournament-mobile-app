@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.recyclerview.RVAdapter;
@@ -120,6 +121,7 @@ public class F_Quizzes extends Fragment implements SelectedListener{
         ArrayList<Quiz> filteredQuizzes = new ArrayList<>();
         Validator validator = new Validator();
         for (Quiz quiz : quizArrayList) {
+
             switch (filter) {
                 case "PAST QUIZZES":
                     if (!validator.isValidDate(quiz.getEdate())) {
@@ -127,7 +129,7 @@ public class F_Quizzes extends Fragment implements SelectedListener{
                     }
                     break;
                 case "ONGOING QUIZZES":
-                    if (validator.isDateTodayOrGreater(quiz.getEdate()) &&
+                    if ((validator.isToday(quiz.getEdate()) || validator.isDateGreaterThanToday(quiz.getEdate())) &&
                             validator.isDateTodayOrSmaller(quiz.getSdate())) {
                         filteredQuizzes.add(quiz);
                     }

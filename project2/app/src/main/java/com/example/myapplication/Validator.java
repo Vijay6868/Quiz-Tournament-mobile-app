@@ -104,7 +104,7 @@ public class Validator {
         try {
             Date quizDate = sdf.parse(date);
             Date currentDate = new Date();
-            return !quizDate.before(currentDate); // Returns true if quizDate is equal to or after currentDate
+            return quizDate.after(currentDate); // Returns true if quizDate is equal to or after currentDate
         } catch (ParseException e) {
             e.printStackTrace();
             return false;
