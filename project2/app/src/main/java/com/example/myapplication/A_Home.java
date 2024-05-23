@@ -20,12 +20,6 @@ public class A_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ArrayList<String> options = new ArrayList<>();
-        options.add("option1");
-        options.add("option1");
-        options.add("option1");
-
-        //FirebaseDatabase.getInstance().getReference().child("Options").setValue(options);
 
         frameLayout = findViewById(R.id.main_frame);
         navBar = findViewById(R.id.nav_bar);
@@ -45,7 +39,7 @@ public class A_Home extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Profile()).commit();
                 }
                 else if (itemId == R.id.nav_completed) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Create_Quiz()).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Quizzes()).commit();
                 }
 
                 return true;

@@ -40,12 +40,12 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/bg_outline_1"
             android:hint="Quiz Name"
             android:textColorHint="@color/et_hint" />
         <TextView
 
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/bg_outline_1"
             android:id="@+id/spin_difficulty"
             android:layout_below="@+id/tbTitle"
             style="@style/app_spinner"
@@ -53,30 +53,32 @@
             />
 
         <TextView
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/bg_outline_1"
             android:id="@+id/spin_ques_type"
             android:layout_below="@+id/spin_difficulty"
             style="@style/app_spinner"/>
 
         <TextView
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/bg_outline_1"
             android:id="@+id/spin_category"
             android:layout_below="@+id/spin_ques_type"
             style="@style/app_spinner"/>
         <TextView
             style="@style/start_date_picker"
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/bg_outline_1"
             android:layout_below="@+id/spin_category"
             android:drawableRight="@drawable/ic_calendar"
             android:hint="Start Date"
             android:padding="10dp"
             android:id="@+id/start_date"
             android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
             android:textColorHint="@color/et_hint"/>
 
         <TextView
             style="@style/start_date_picker"
-            android:background="@drawable/edit_text_background"
+            android:textColor="@color/black"
+            android:background="@drawable/bg_outline_1"
             android:layout_below="@+id/spin_category"
             android:drawableRight="@drawable/ic_calendar"
             android:hint="End Date"

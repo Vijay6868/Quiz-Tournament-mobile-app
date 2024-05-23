@@ -21,7 +21,7 @@ public class UserManager {
     private String userName;
     private String email;
     private String userType;
-    private DatabaseReference userLikeRef;
+    private DatabaseReference userRef;
     boolean isliked;
 
     // Private constructor to prevent instantiation
@@ -33,7 +33,7 @@ public class UserManager {
             email = firebaseUser.getEmail();
             isliked = false;
 
-            userLikeRef = FirebaseDatabase.getInstance().getReference().child("User_Liked_Quizzes")
+            userRef = FirebaseDatabase.getInstance().getReference().child("User_Liked_Quizzes")
                     .child(userId);
         }
     }
@@ -102,13 +102,12 @@ public class UserManager {
 
     }
     public void updatelikedQuizees(String quizID,boolean isLikes){
-        //DatabaseReference userLikeRef = FirebaseDatabase.getInstance().getReference().child("User_Liked_Quizzes")
-                //.child(userId);
+
         if(isLikes){
-            userLikeRef.child(quizID).setValue(true);
+            userRef.child(quizID).setValue(true);
         }
         else{
-            userLikeRef.child(quizID).setValue(false);
+            userRef.child(quizID).setValue(false);
         }
     }
 
@@ -140,7 +139,7 @@ public class UserManager {
     }
     public void isLiked(LikeCallback callback,String quizID){
 
-        userLikeRef.child(quizID).addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.child(quizID).addListenerForSingleValueEvent(new ValueEventListener() {
             boolean isliked = false;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -156,26 +155,29 @@ public class UserManager {
             }
         });
 
-//        userLikeRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    for(DataSnapshot id : snapshot.getChildren()){
-//
-//                        isliked = id.child(quizID).getValue(Boolean.class);
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+    }
+    public void fetchCompletedQuizzes(QCompletedcallback qCompletedcallback){
+        ArrayList<String> compQuizzes = new ArrayList<>();
+        DatabaseReference quizzesCompletedRef = FirebaseDatabase.getInstance().getReference()
+                .child("Players")
+                .child(userId)
+                .child("quizzes_completed");
+        quizzesCompletedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot data : snapshot.getChildren()){
+                        compQuizzes.add(data.getValue(String.class));
+                    }
+                }
+                qCompletedcallback.quizCompleted(compQuizzes);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-
+            }
+        });
     }
 }
 

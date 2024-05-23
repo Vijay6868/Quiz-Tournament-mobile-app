@@ -95,13 +95,7 @@ public class F_Quiz_Details extends Fragment {
                 tgLike.setChecked(isLike);
             }
         }, quiz.getQuiz_id());
-//        boolean state = userManager.isLiked(new LikeCallback() {
-//            @Override
-//            public void onCallback(boolean isLike) {
-//
-//            }
-//        }, quiz.getQuiz_id());
-//        tgLike.setChecked(state);
+
     }
 
     private void displayFeatures() {
