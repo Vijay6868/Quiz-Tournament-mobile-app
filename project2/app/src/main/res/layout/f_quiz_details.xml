@@ -162,6 +162,15 @@
             android:textSize="18sp"
             android:layout_alignLeft="@id/start_date"
             android:visibility="invisible"/>
+        <Button
+            android:id="@+id/btCompleted"
+            style="@style/button_3_half"
+            android:layout_below="@id/start_date"
+            android:layout_marginTop="80dp"
+            android:text="Completed"
+            android:textSize="18sp"
+            android:layout_alignLeft="@id/start_date"
+            android:visibility="invisible"/>
 
         <Button
             android:id="@+id/btClose"

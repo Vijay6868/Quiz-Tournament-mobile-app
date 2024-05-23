@@ -28,7 +28,7 @@ public class UserManager {
     private UserManager() {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-            userId = "8TPMkWHkmgeTdcTD4ohveX9zPJD3";//firebaseUser.getUid();
+            userId = "oHBndxputRgjXM4RlrirtQbp7Z52";//firebaseUser.getUid();
             userName = firebaseUser.getDisplayName();
             email = firebaseUser.getEmail();
             isliked = false;

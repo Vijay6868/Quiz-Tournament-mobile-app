@@ -7,14 +7,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.example.myapplication.quizAndUsers.UserManager;
+import com.example.myapplication.quizAndUsers.UserTypeCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
 
 public class A_Home extends AppCompatActivity {
     FrameLayout frameLayout;
     BottomNavigationView navBar;
+    UserManager userManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,23 +27,52 @@ public class A_Home extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Quizzes()).commit();
         navBar.setSelectedItemId(R.id.nav_quizzes);
-        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+
+        userManager = UserManager.getInstance();
+        handleBottomNav();
+    }
+
+
+    public void handleBottomNav(){
+        userManager.getUserType(new UserTypeCallback() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                int itemId = item.getItemId();
-
-                if(itemId == R.id.nav_quizzes){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Quizzes()).commit();
-                }
-                else if(itemId == R.id.nav_profile){
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Profile()).commit();
-                }
-                else if (itemId == R.id.nav_completed) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Quizzes()).commit();
+            public void onCallback(String userType) {
+                MenuItem item = navBar.getMenu().findItem(R.id.nav_completed);
+                if(userType.equals("Admins")){
+                    item.setIcon(R.drawable.ic_add);
+                    item.setTitle("Add Quiz");
                 }
 
-                return true;
+                navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                        int itemId = item.getItemId();
+
+                        if(itemId == R.id.nav_quizzes){
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Quizzes()).commit();
+                        }
+                        else if(itemId == R.id.nav_profile){
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Profile()).commit();
+                        }
+                        else if (itemId == R.id.nav_completed) {
+                            if(userType.equals("Admins")){
+                                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Create_Quiz()).commit();
+                                item.setIcon(R.drawable.ic_add);
+                                item.setTitle("Add Quiz");
+                            }
+                            else{
+                                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Leaderboard()).commit();
+                                item.setIcon(R.drawable.ic_add);
+                            }
+                        }
+
+                        return true;
+                    }
+                });
+
+
             }
         });
     }

@@ -19,11 +19,13 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.myapplication.quizAndUsers.LikeCallback;
+import com.example.myapplication.quizAndUsers.QCompletedcallback;
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.quizAndUsers.QuizManager;
 import com.example.myapplication.quizAndUsers.UserManager;
 import com.example.myapplication.quizAndUsers.UserTypeCallback;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -32,7 +34,7 @@ public class F_Quiz_Details extends Fragment {
     View view;
     EditText qname;
     TextView difficulty, category, noOfQues, w_sdate, w_edate, sdate,edate,w_title,likes;
-    Button btClose, btStart, btUpdate, btComing, btQuizOver;
+    Button btClose, btStart, btUpdate, btComing, btQuizOver, btCompleted;
     String _start_date, _end_date,_qname,_likes, userType;
     Validator validator;
     Quiz quiz;
@@ -68,6 +70,7 @@ public class F_Quiz_Details extends Fragment {
          likes = view.findViewById(R.id.likes);
          btQuizOver = view.findViewById(R.id.btQuizOver);
          btComing = view.findViewById(R.id.btComing);
+         btCompleted = view.findViewById(R.id.btCompleted);
          setQuizDetails();
 
          inputs();
@@ -79,9 +82,10 @@ public class F_Quiz_Details extends Fragment {
          handleTgLike();
          displayFeatures();
 
+
         quizManager = new QuizManager(quiz);
         userManager = UserManager.getInstance();
-
+        checkIfQuizCompleted();
         tgLikeInitialState();
         originalLikes = quiz.getLikes();
 
@@ -96,6 +100,16 @@ public class F_Quiz_Details extends Fragment {
             }
         }, quiz.getQuiz_id());
 
+    }
+    private void checkIfQuizCompleted(){
+        userManager.fetchCompletedQuizzes(new QCompletedcallback() {
+            @Override
+            public void quizCompleted(ArrayList<String> compQuizzes) {
+                if(compQuizzes.contains(quiz.getQuiz_id())  ){
+                    btCompleted.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     private void displayFeatures() {
