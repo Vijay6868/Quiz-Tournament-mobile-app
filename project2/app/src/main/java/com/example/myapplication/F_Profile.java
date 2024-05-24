@@ -23,7 +23,7 @@ public class F_Profile extends Fragment {
     }
 
 //======================================================================
-    TextView logout, tv_email;
+    TextView logout, tv_email, tv_userType;
     View view;
     ImageView img_userType;
     UserManager userManager;
@@ -38,6 +38,7 @@ public class F_Profile extends Fragment {
         tv_email = view.findViewById(R.id.lb_email);
         tv_email.setText(userManager.getEmail());
         img_userType = view.findViewById(R.id.ic_user_type);
+        tv_userType = view.findViewById(R.id.lb_userType);
 
         handleUserTypeIc();
 
@@ -50,6 +51,8 @@ public class F_Profile extends Fragment {
           public void onCallback(String userType) {
               if(userType.equals("Admins")){
                   img_userType.setImageResource(R.drawable.ic_admin);
+                  tv_userType.setText("Admin");
+
               }
           }
       });
