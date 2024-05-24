@@ -27,7 +27,8 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="20sp"
         android:layout_marginBottom="20sp"
-        android:text="Login as" />
+        android:text="Login as"
+        android:visibility="invisible"/>
 
 
     <Button
@@ -38,7 +39,7 @@
         android:layout_below="@id/lbRegisterAs"
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
-        android:text="Player"
+        android:text="Login"
         android:textSize="18sp" />
 
 
@@ -50,7 +51,7 @@
         android:layout_below="@id/btPlayer"
         android:layout_centerInParent="true"
         android:layout_marginTop="15dp"
-        android:text="Admin"
+        android:text="Create Account"
         android:textColor="@color/white"
         android:textSize="18sp" />
     <TextView
@@ -62,8 +63,10 @@
         android:layout_below="@id/btAdmin"
         android:layout_marginLeft="140dp"
         android:layout_marginTop="100dp"
+        android:visibility="invisible"
         />
     <TextView
+        android:visibility="visible"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         style="@style/label_color3"

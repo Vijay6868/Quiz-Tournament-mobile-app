@@ -25,10 +25,6 @@ public class MainActivity extends AppCompatActivity {
         btAdmin();
         btPlayer();
 
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
-       //FirebaseDatabase.getInstance().getReference().child("Users").child("user1").child("uid").setValue("101");
-
-
     }
     public void clickHere(){
         tvClickHere.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Launch the Login activity and pass user type as an extra
-                Intent intent = new Intent(MainActivity.this, A_Login.class);
-                intent.putExtra("userType", "Admins");
+                Intent intent = new Intent(MainActivity.this, A_Register.class);
+                //intent.putExtra("userType", "Admins");
                 startActivity(intent);
             }
         });

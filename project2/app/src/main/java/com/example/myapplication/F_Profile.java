@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.quizAndUsers.UserManager;
+import com.example.myapplication.quizAndUsers.UserTypeCallback;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -23,6 +25,8 @@ public class F_Profile extends Fragment {
 //======================================================================
     TextView logout, tv_email;
     View view;
+    ImageView img_userType;
+    UserManager userManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,12 +34,25 @@ public class F_Profile extends Fragment {
          view = inflater.inflate(R.layout.f__profile, container, false);
          logout = view.findViewById(R.id.lb_logOut);
          handleLogout();
-        UserManager userManager = UserManager.getInstance();
+        userManager = UserManager.getInstance();
         tv_email = view.findViewById(R.id.lb_email);
         tv_email.setText(userManager.getEmail());
+        img_userType = view.findViewById(R.id.ic_user_type);
 
+        handleUserTypeIc();
 
     return view;
+    }
+
+    private void handleUserTypeIc() {
+      userManager.getUserType(new UserTypeCallback() {
+          @Override
+          public void onCallback(String userType) {
+              if(userType.equals("Admins")){
+                  img_userType.setImageResource(R.drawable.ic_admin);
+              }
+          }
+      });
     }
 
     private void handleLogout() {
