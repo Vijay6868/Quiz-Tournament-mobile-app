@@ -52,11 +52,6 @@ public class A_Register extends AppCompatActivity {
 
         _userType = getIntent().getStringExtra("userType");
 
-//        quiz_completed = new ArrayList<>();
-//        quiz_created = new ArrayList<>();
-//        quiz_created.add("quiz1");
-//        quiz_completed.add("quiz1");
-
         handBtRegister();
 
     }

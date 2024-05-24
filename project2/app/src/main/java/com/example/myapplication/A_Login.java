@@ -20,6 +20,7 @@ public class A_Login extends AppCompatActivity {
     String _username, _password,_userType;
     TextView w_username, w_password;
     private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

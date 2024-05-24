@@ -28,7 +28,7 @@ public class UserManager {
     private UserManager() {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (firebaseUser != null) {
-            userId = "oHBndxputRgjXM4RlrirtQbp7Z52";//firebaseUser.getUid();
+            userId = firebaseUser.getUid();
             userName = firebaseUser.getDisplayName();
             email = firebaseUser.getEmail();
             isliked = false;
@@ -37,8 +37,7 @@ public class UserManager {
                     .child(userId);
         }
     }
-    //FirebaseDatabase.getInstance().getReference().child(_userType).child(uid).setValue(m);
-    // Public method to provide access to the instance
+
     public static synchronized UserManager getInstance() {
         if (instance == null) {
             instance = new UserManager();

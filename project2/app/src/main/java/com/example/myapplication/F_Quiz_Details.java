@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,7 @@ public class F_Quiz_Details extends Fragment {
     ToggleButton tgLike;
     int originalLikes;
     UserManager userManager;
+    LoadingDialog loadingDialog;
 
     public F_Quiz_Details() {
         // Required empty public constructor
@@ -53,7 +55,7 @@ public class F_Quiz_Details extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.f_quiz_details, container, false);
-
+            loadDialog();
 
          difficulty = view.findViewById(R.id.spin_difficulty);
          category = view.findViewById(R.id.spin_category);
@@ -423,5 +425,16 @@ public class F_Quiz_Details extends Fragment {
                 .replace(R.id.main_frame, fQuizField)
                 .addToBackStack(null)
                 .commit();
+    }
+    private void loadDialog() {
+        loadingDialog = new LoadingDialog(getActivity());
+        loadingDialog.startLoadingDialog();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadingDialog.dismissDialog();
+            }
+        },1000);
     }
 }
