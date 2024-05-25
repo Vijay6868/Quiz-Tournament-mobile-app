@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         tvClickHere = findViewById(R.id.tv_already_have_account_click_here);
         btPlayer = findViewById(R.id.btPlayer);
         clickHere();
-        btAdmin();
+        btCreateAccount();
         btPlayer();
 
     }
@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void btAdmin(){
+    public void btCreateAccount(){
         btAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Launch the Login activity and pass user type as an extra
-                Intent intent = new Intent(MainActivity.this, A_Register.class);
+                Intent intent = new Intent(MainActivity.this, A_SelectRegistrationRole.class);
                 //intent.putExtra("userType", "Admins");
                 startActivity(intent);
             }

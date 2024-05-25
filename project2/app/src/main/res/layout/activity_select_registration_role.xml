@@ -49,11 +49,12 @@
         android:layout_height="50sp"
         android:layout_below="@id/btPlayer"
         android:layout_centerInParent="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:text="Admin"
         android:textColor="@color/white"
         android:textSize="18sp" />
     <TextView
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         style="@style/label_color2"
@@ -64,6 +65,7 @@
         android:layout_marginTop="100dp"
         />
     <TextView
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         style="@style/label_color3"
