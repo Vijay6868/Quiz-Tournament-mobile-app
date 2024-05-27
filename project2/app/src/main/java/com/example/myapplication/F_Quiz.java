@@ -76,9 +76,6 @@ public class F_Quiz extends Fragment {
         ArrayAdapter<String> adpater = new ArrayAdapter<String>(getContext(),R.layout.list_item,list);
         listView.setAdapter(adpater);
 
-
-
-
         list.size();
         return view;
     }

@@ -55,7 +55,7 @@ public class A_Register extends AppCompatActivity {
         handBtRegister();
 
     }
-
+    // register user if details are correct
     private void handBtRegister() {
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,8 @@ public class A_Register extends AppCompatActivity {
             }
         });
     }
-
+    // register user attached and aatach their UID in in realtime database under
+    // Player or Admin nodes
     private void registerPlayer() {
         auth.createUserWithEmailAndPassword(_email, _password).addOnCompleteListener(A_Register.this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -116,6 +117,7 @@ public class A_Register extends AppCompatActivity {
             }
         });
     }
+    //validate details are correct
     public boolean validateInputs(){
 
         Validator validator = new Validator();

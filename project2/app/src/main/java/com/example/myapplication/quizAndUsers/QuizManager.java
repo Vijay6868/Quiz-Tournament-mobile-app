@@ -32,6 +32,7 @@ public class QuizManager {
         this.quizID = quiz.getQuiz_id();
 
     }
+    //insert quiz data to firebase
     public void insertQuizData(){
         HashMap<String, Object> quiz_data = new HashMap<>();
 
@@ -50,6 +51,7 @@ public class QuizManager {
         FirebaseDatabase.getInstance().getReference().child("Quizzes")
                 .child(quizID).setValue(quiz_data);
 
+        //insert questions to firebase corresponding to quizid
         QuestionsModelList questions_list= quiz.getQuestions();
         int count = 1;
         //HashMap<String, Object> question_data = new HashMap<>();
@@ -89,11 +91,13 @@ public class QuizManager {
 
         return incorrect_answers;
     }
+    //update likes for a single quiz
     public void updateLikes(){
         HashMap<String, Object> updatesLikes = new HashMap<>();
         updatesLikes.put("likes",quiz.getLikes());
         updateQuizOrLikes(updatesLikes);
     }
+    //update existing quiz in firebase
     public void updateQuizData(){
 
         HashMap<String, Object> update_data = new HashMap<>();
@@ -104,7 +108,7 @@ public class QuizManager {
 
         updateQuizOrLikes(update_data);
     }
-
+    //method is called inside update updateQuizData method
     private void updateQuizOrLikes(HashMap<String, Object> update_data) {
         DatabaseReference quizRef = FirebaseDatabase.getInstance().getReference()
                 .child("Quizzes");
@@ -121,7 +125,7 @@ public class QuizManager {
             }
         });
     }
-
+    //delete quiz from firbase
     public void deleteQuizData(){
         DatabaseReference quizRef = FirebaseDatabase.getInstance().getReference()
                 .child("Quizzes");

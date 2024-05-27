@@ -77,6 +77,7 @@ public class F_Profile extends Fragment {
             }
         });
     }
+    //clear all the fragments backstacked
     public void clearBackStack() {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         if (fragmentManager.getBackStackEntryCount() > 0) {

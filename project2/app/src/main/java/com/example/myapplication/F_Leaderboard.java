@@ -14,7 +14,7 @@ public class F_Leaderboard extends Fragment {
         // Required empty public constructor
     }
 
-
+    // for future development of the app
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

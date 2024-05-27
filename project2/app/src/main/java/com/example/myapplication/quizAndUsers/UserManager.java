@@ -44,6 +44,8 @@ public class UserManager {
         }
         return instance;
     }
+    //once user the completed the quiz
+    //quiz is added to their profile under quizzes completed
     public void updateQuizCompleted(String quizID) {
         DatabaseReference quizzesCompletedRef = FirebaseDatabase.getInstance().getReference()
                 .child("Players")
@@ -73,7 +75,7 @@ public class UserManager {
         });
     }
 
-
+    //fetch current user type -> player or admin
     public void getUserType(UserTypeCallback callback) {
         DatabaseReference userTypeRef = FirebaseDatabase.getInstance().getReference()
                 .child("Admins")
@@ -100,6 +102,7 @@ public class UserManager {
 
 
     }
+    //updates data in firebase if user liked quiz or not
     public void updatelikedQuizees(String quizID,boolean isLikes){
 
         if(isLikes){
@@ -127,15 +130,7 @@ public class UserManager {
         return email;
     }
 
-    // Method to update user info if necessary
-    public void updateUser(FirebaseUser user) {
-        this.firebaseUser = user;
-        if (firebaseUser != null) {
-            userId = firebaseUser.getUid();
-            userName = firebaseUser.getDisplayName();
-            email = firebaseUser.getEmail();
-        }
-    }
+
     public void isLiked(LikeCallback callback,String quizID){
 
         userRef.child(quizID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -155,6 +150,7 @@ public class UserManager {
         });
 
     }
+    // fetch user completed quizzes from firebase
     public void fetchCompletedQuizzes(QCompletedcallback qCompletedcallback){
         ArrayList<String> compQuizzes = new ArrayList<>();
         DatabaseReference quizzesCompletedRef = FirebaseDatabase.getInstance().getReference()
@@ -178,12 +174,7 @@ public class UserManager {
             }
         });
     }
-    public void clearUserData(){
-        userId = null;
-        userType = null;
-        userName = null;
-        email =null;
-    }
+// reset instance once user is looged out
     public static synchronized void resetInstance() {
         instance = null;
     }

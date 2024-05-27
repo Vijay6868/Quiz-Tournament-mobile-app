@@ -22,6 +22,7 @@ public class F_Display_Score extends Fragment {
     Button btBackToQuizzes;
     TextView tv_score;
     View view;
+    // this fragment is displayed when user completes the quiz
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class F_Display_Score extends Fragment {
         handlebtBackToQuizzes();
         return view;
     }
-
+    //take to quizzes home page when user finshes the quiz
     private void handlebtBackToQuizzes() {
         btBackToQuizzes.setOnClickListener(new View.OnClickListener() {
             @Override

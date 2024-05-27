@@ -27,6 +27,8 @@ public class A_Home extends AppCompatActivity {
         frameLayout = findViewById(R.id.main_frame);
         navBar = findViewById(R.id.nav_bar);
 
+
+        //sets F_quizees fragment when A.Home activity is loaded first.
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Quizzes()).commit();
         navBar.setSelectedItemId(R.id.nav_quizzes);
 
@@ -34,7 +36,9 @@ public class A_Home extends AppCompatActivity {
         userManager = UserManager.getInstance();
         handleBottomNav();
     }
-
+    /*loading dialog is displayed for 1000mill while the quizzes are loading from the
+    Firebase
+     * */
     private void loadDialog() {
         loadingDialog = new LoadingDialog(A_Home.this);
         loadingDialog.startLoadingDialog();
@@ -47,7 +51,8 @@ public class A_Home extends AppCompatActivity {
         },1000);
     }
 
-
+    // dynamic bottom navigation, changes according to userType
+    //display relevent fragment when buttons pressed on nav bar
     public void handleBottomNav(){
         userManager.getUserType(new UserTypeCallback() {
             @Override
@@ -77,7 +82,7 @@ public class A_Home extends AppCompatActivity {
                             }
                             else{
                                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new F_Leaderboard()).commit();
-                                //item.setIcon(R.drawable.ic_add);
+
                             }
                         }
 

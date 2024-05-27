@@ -37,11 +37,12 @@ public class A_Login extends AppCompatActivity {
         username = findViewById(R.id.tbUsername_login);
         password = findViewById(R.id.tbPassword_login);
 
-    }
+    }//check username and passowrd meet the requirements
     public void loginAlert(){
         w_username = findViewById(R.id.wlb_uname);
         w_password = findViewById(R.id.wlb_password);
     }
+    //Load app homepage once if login is successfully otherwise
     public void handleLoginButton(){
         btlogin = findViewById(R.id.btLogin);
         btlogin.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +64,7 @@ public class A_Login extends AppCompatActivity {
             }
         });
     }
+    //validate user inputs
     public boolean validateInputs() {
 
         Validator validator = new Validator();

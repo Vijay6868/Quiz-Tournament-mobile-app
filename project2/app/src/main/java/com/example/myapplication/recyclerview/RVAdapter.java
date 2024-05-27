@@ -50,7 +50,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
 
         int colorIndex = position % cardColors.length;
         int colorRes = cardColors[colorIndex];
-
+        //randomly assign the color to card
         holder.rl_color.setBackgroundColor(ContextCompat.getColor(holder.itemView.getContext(), colorRes));
 
         Random random = new Random();
@@ -59,6 +59,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
         // Set the randomly selected image
         holder.cardimg.setImageResource(imageResources[randomIndex]);
 
+        //handle when user clicks on card
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +72,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
     public int getItemCount() {
         return quizArrayList.size();
     }
-
+    // update quiz list as per selection in dropdown in F_quizzes fragment
     public void updateQuizzesList(ArrayList<Quiz> updatedList){
         quizArrayList = new ArrayList<>(updatedList);
         notifyDataSetChanged();
