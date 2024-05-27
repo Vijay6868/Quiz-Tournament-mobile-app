@@ -178,5 +178,14 @@ public class UserManager {
             }
         });
     }
+    public void clearUserData(){
+        userId = null;
+        userType = null;
+        userName = null;
+        email =null;
+    }
+    public static synchronized void resetInstance() {
+        instance = null;
+    }
 }
 

@@ -435,6 +435,6 @@ public class F_Quiz_Details extends Fragment {
             public void run() {
                 loadingDialog.dismissDialog();
             }
-        },1000);
+        },500);
     }
 }
