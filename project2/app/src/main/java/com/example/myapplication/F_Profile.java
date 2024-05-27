@@ -23,7 +23,6 @@ public class F_Profile extends Fragment {
         // Required empty public constructor
     }
 
-//======================================================================
     TextView logout, tv_email, tv_userType;
     View view;
     ImageView img_userType;
@@ -45,7 +44,8 @@ public class F_Profile extends Fragment {
 
     return view;
     }
-
+/* handle icon displayed according to user type
+* */
     private void handleUserTypeIc() {
       userManager.getUserType(new UserTypeCallback() {
           @Override
@@ -58,7 +58,11 @@ public class F_Profile extends Fragment {
           }
       });
     }
-
+    /* user is logged out from the app, when presses logged out TextView
+    User manager instance is set to null
+    MainActivity is displayed
+    clear back stack
+     * */
     private void handleLogout() {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
