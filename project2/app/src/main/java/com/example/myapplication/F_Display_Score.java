@@ -33,7 +33,7 @@ public class F_Display_Score extends Fragment {
         if(bundle!=null){
             int score = bundle.getInt("final_score");
             String _score = String.valueOf(score);
-            tv_score.setText(_score);
+            tv_score.setText("Final Score: "+_score);
         }
 
 

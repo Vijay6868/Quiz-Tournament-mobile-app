@@ -22,7 +22,7 @@
         android:drawableLeft="@drawable/ic_return"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         android:layout_below="@+id/tv_final_score"
         android:id="@+id/bt_retHome"/>
 
