@@ -46,7 +46,7 @@ public class F_Quizzes extends Fragment implements SelectedListener {
         userManager = UserManager.getInstance();
         return view;
     }
-
+    // filter quizzes in recycler view based on user selection
     public void handleQuizSelectionSpin() {
         sp_quiz_selection = view.findViewById(R.id.sp_quizzes);
 
@@ -71,7 +71,7 @@ public class F_Quizzes extends Fragment implements SelectedListener {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item_layout, options);
         sp_quiz_selection.setAdapter(adapter);
     }
-
+    // add quiz items to arraylist based on user selection
     public void filterQuizzes(String filter) {
         // Fetch completed quizzes first
         compQuizzes(new CompletedQuizzesCallback() {
@@ -112,7 +112,7 @@ public class F_Quizzes extends Fragment implements SelectedListener {
             }
         });
     }
-
+    // check if user has already particpated in the quiz
     public void compQuizzes(CompletedQuizzesCallback callback) {
         completedQuizzes = new ArrayList<>();
         userManager.fetchCompletedQuizzes(new QCompletedcallback() {
@@ -123,7 +123,7 @@ public class F_Quizzes extends Fragment implements SelectedListener {
             }
         });
     }
-
+    // read quiz data from firebase
     private void readQuizData() {
         quizArrayList = new ArrayList<>();
         FirebaseDatabase.getInstance().getReference().child("Quizzes").addValueEventListener(new ValueEventListener() {
@@ -150,14 +150,14 @@ public class F_Quizzes extends Fragment implements SelectedListener {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
-
+    //display quizzes in recycler view
     public void recView() {
         recyclerView = view.findViewById(R.id.f_rv_item);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new RVAdapter(quizArrayList, this);
         recyclerView.setAdapter(adapter);
     }
-
+    // handles when user click on quiz card
     @Override
     public void onItemClicked(Quiz quiz) {
         F_Quiz_Details fQuizDetails = new F_Quiz_Details();

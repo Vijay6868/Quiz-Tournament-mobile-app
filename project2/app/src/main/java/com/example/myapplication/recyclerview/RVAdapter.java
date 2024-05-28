@@ -42,13 +42,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
     @Override
     public void onBindViewHolder(@NonNull RVHolder holder, int position) {
 
-        String s_date = "Starts: ";
-        String e_date = "Ends: ";
+        String s_date = "S: ";
+        String e_date = "E: ";
 
         Quiz item = quizArrayList.get(position);
         holder.qname.setText(item.getQname());
         holder.sdate.setText(s_date+item.getSdate());
         holder.edate.setText((e_date+item.getEdate()));
+        holder.difficulty.setText(" "+item.getDifficulty());
+        holder.category.setText(" "+item.getCategory());
 
         int colorIndex = position % cardColors.length;
         int colorRes = cardColors[colorIndex];

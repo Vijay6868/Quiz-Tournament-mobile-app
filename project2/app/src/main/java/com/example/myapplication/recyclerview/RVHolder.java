@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 
 public class RVHolder extends RecyclerView.ViewHolder {
-TextView qname, sdate,edate;
+TextView qname, sdate,edate, category, difficulty;
 RelativeLayout rl_color;
 ImageView cardimg;
 CardView cardView;
@@ -26,6 +26,8 @@ CardView cardView;
         rl_color = itemView.findViewById(R.id.rl_color);
         cardimg = itemView.findViewById(R.id.card_img);
         cardView = itemView.findViewById(R.id.rv_carditems);
+        category = itemView.findViewById(R.id.tv_category);
+        difficulty = itemView.findViewById(R.id.tv_difficulty);
 
     }
 }

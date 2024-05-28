@@ -9,6 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:id="@+id/l1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quiz Details"
+            style="@style/label_heading"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"/>
 
         <ImageView
             android:id="@+id/btDelete"

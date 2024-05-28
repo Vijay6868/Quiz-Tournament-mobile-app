@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btPlayer();
 
     }
+    //move to registration actvity, user selects register as Admin or Player
     public void clickHere(){
         tvClickHere.setOnClickListener(new View.OnClickListener() {
             @Override

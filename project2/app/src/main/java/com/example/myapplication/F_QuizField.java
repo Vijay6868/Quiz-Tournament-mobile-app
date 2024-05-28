@@ -219,13 +219,13 @@ public class F_QuizField extends Fragment {
         }
         answerCheckDialog();
     }
-    //
+    //handle check dialog
     public void answerCheckDialog(){
         correct.setVisibility(View.GONE);
         incorrect.setVisibility(View.GONE);
         answer.setVisibility(View.GONE);
     }
-
+    //fetch question from firebase by querying quiz id
     private void fetchQuestions() {
         questionArrayList = new ArrayList<>();
         Bundle bundle = getArguments();
