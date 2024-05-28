@@ -92,7 +92,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         });
     }
 
-
+    // dropdown category implementation
     public void handleSpCategory(){
         sp_difficulty = view.findViewById(R.id.spin_difficulty);
         sp_difficulty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -119,6 +119,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_layout_2, options);
         sp_difficulty.setAdapter(adapter);
     }
+    // dropdown quiz type implementation
     public void handleSpType(){
         sp_type = view.findViewById(R.id.spin_ques_type);
         sp_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -141,6 +142,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_layout_2, options);
         sp_type.setAdapter(adapter);
     }
+    // dropdown quiz difficulty implementation
     public void handleSpDifficulty(){
         sp_category = view.findViewById(R.id.spin_category);
         sp_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -163,6 +165,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_layout_2, options);
         sp_category.setAdapter(adapter);
     }
+    // dropdown quiz no of ques implementation
     public void handleSpNoOfQues(){
         sp_no_of_ques = view.findViewById(R.id.no_of_ques);
         sp_no_of_ques.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -178,7 +181,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
 
         });
         ArrayList<String> options = new ArrayList<>();
-
+        // populate dropdown list
         for(int i=1;i<=10;i++){
             String _i = Integer.toString(i);
             options.add(_i);
@@ -188,7 +191,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.spinner_layout_2, options);
         sp_no_of_ques.setAdapter(adapter);
     }
-
+    // quiz date selection dialog
     public void handleDateSelection() {
         Calendar c = Calendar.getInstance();
         int currentYear = c.get(Calendar.YEAR);
@@ -250,7 +253,7 @@ public class F_Create_Quiz extends Fragment implements DataCallback {
             }
         });
     }
-
+    //validate quiz data, called upon create button
     public boolean validateInputs(){
         Validator validator = new Validator();
         boolean isValid = true;

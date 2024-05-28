@@ -86,7 +86,7 @@ public class F_QuizField extends Fragment {
         _score = String.valueOf(score);
         tv_score.setText(_score);
     }
-
+    // check the user selection against the correct answer
     private void handleBtCheck() {
         btCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,11 +106,10 @@ public class F_QuizField extends Fragment {
                 } else {
                     Toast.makeText(getContext(), "make selection", Toast.LENGTH_SHORT).show();
                 }
-                //selOption = null;
             }
         });
     }
-
+    //store user radio button selection
     private String handlePlayerSelection() {
 
         rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -120,8 +119,6 @@ public class F_QuizField extends Fragment {
                     RadioButton player_selection = view.findViewById(checkedId);
                     selOption = player_selection.getText().toString();
                 }
-
-                //Toast.makeText(getContext(), "Selected: " + selOption, Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -137,7 +134,7 @@ public class F_QuizField extends Fragment {
         });
         return selOption;
     }
-
+    //display next question
     private void handleBtNext() {
 
         QuestionModel singleQuestion = questionArrayList.get(0);
@@ -178,6 +175,7 @@ public class F_QuizField extends Fragment {
             }
         });
     }
+    //display F_Display_score once user completed the quiz
     public void displayScoreFrag(){
         F_Display_Score fDisplayScore = new F_Display_Score();
         //fDisplayScore.setArguments();
@@ -199,6 +197,7 @@ public class F_QuizField extends Fragment {
             rg2.clearCheck();
         }
     }
+    //insert incorrect and correct answer to list and shuffle, if question type is multiple
     public void shuffleOptions(String correct, ArrayList<String> _incorrect){
         if(quiz.getType().equals("multiple")){
             _incorrect.add(correct);
@@ -210,6 +209,7 @@ public class F_QuizField extends Fragment {
         }
 
     }
+    //display answer options according if question type is multiple or true/false
     private void displayQuestionOptions(String category) {
         if(category.equals("multiple")){
             rg2.setVisibility(View.GONE);
@@ -219,6 +219,7 @@ public class F_QuizField extends Fragment {
         }
         answerCheckDialog();
     }
+    //
     public void answerCheckDialog(){
         correct.setVisibility(View.GONE);
         incorrect.setVisibility(View.GONE);

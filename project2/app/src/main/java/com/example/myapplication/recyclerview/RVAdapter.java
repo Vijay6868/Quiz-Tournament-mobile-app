@@ -19,8 +19,10 @@ import java.util.Random;
 public class RVAdapter extends RecyclerView.Adapter<RVHolder>{
     private ArrayList<Quiz> quizArrayList;
     private SelectedListener listener;
-    private int[] imageResources = {R.drawable.cardimg5, R.drawable.cardimg6
+    private int[] imageResources = {R.drawable.cardimg5, R.drawable.cardimg6 //random images collection
             ,R.drawable.cardimg7,R.drawable.cardimg8, R.drawable.cardimg9};
+
+    //random colors collection
     private int[] cardColors = {R.color.bt_color_2, R.color.bt_color_3, R.color.bt_color_1};
 
     //private SelectListener listener;
