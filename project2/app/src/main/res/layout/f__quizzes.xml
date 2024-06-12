@@ -23,7 +23,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="310dp"/>
 
-        <FrameLayout
+        <RelativeLayout
             android:layout_marginTop="10dp"
             android:layout_below="@+id/sp_quizzes"
             android:layout_width="match_parent"
@@ -33,7 +33,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/f_rv_item"/>
-        </FrameLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search"
+                android:background="@drawable/bg_button_3"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@id/f_rv_item"
+                android:layout_margin="30dp"
+                android:id="@+id/bt_search"/>
+        </RelativeLayout>
 
 
     </RelativeLayout>
