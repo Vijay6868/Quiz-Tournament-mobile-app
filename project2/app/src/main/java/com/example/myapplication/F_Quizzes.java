@@ -15,6 +15,7 @@ import com.example.myapplication.quizAndUsers.QCompletedcallback;
 import com.example.myapplication.quizAndUsers.Quiz;
 import com.example.myapplication.quizAndUsers.UserManager;
 import com.example.myapplication.recyclerview.RVAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -43,9 +44,18 @@ public class F_Quizzes extends Fragment implements SelectedListener {
         handleQuizSelectionSpin();
         readQuizData();
         recView();
+        handlebtSearch();
         userManager = UserManager.getInstance();
         return view;
     }
+
+    private void handlebtSearch() {
+        FloatingActionButton btSearch = view.findViewById(R.id.bt_search);
+        btSearch.setOnClickListener(v -> {
+            
+        });
+    }
+
     // filter quizzes in recycler view based on user selection
     public void handleQuizSelectionSpin() {
         sp_quiz_selection = view.findViewById(R.id.sp_quizzes);
