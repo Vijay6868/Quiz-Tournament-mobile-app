@@ -1,6 +1,9 @@
 Quiz Tournament App
 
-![Home](screenshots/home_p.png) [500x250]
+![Home](screenshots/img1.png) []
+![Home](screenshots/img2.png) []
+![Home](screenshots/img3.png) []
+![Home](screenshots/img4.png) []
 
 
 Welcome to the Quiz Tournament App! This is a platform where users can create, manage, and participate in quiz tournaments. There are two types of users: Admin and Player. Admin users have the ability to create and manage tournaments, while Player users can participate in tournaments and interact with them.
