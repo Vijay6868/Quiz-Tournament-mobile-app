@@ -1,16 +1,10 @@
-Quiz Tournament App
-
-![Home](screenshots/img1.png) []
-![Home](screenshots/img2.png) []
-![Home](screenshots/img3.png) []
-![Home](screenshots/img4.png) []
-
+# Quiz Tournament App
 
 Welcome to the Quiz Tournament App! This is a platform where users can create, manage, and participate in quiz tournaments. There are two types of users: Admin and Player. Admin users have the ability to create and manage tournaments, while Player users can participate in tournaments and interact with them.
 
-Features
+## Features
 
-Admin User Features:
+### Admin User Features:
 Login: Admin users can log into the application using their email/username and password.
 
 Create Tournament: Admin users can create a new quiz tournament by providing details such as name, category, difficulty, start date, and end date. The tournament consists of 10 questions dynamically fetched from the OpenTDB API.
@@ -23,7 +17,7 @@ Delete Tournament: Admin users can delete a quiz tournament. A confirmation prom
 
 View Likes: Admin users can view the number of likes for each quiz tournament.
 
-Player User Features:
+### Player User Features:
 Login: Player users can log into the application using their email/username and password.
 
 View Tournaments: Player users can see ongoing, upcoming, past, and participated quiz tournaments. However, they cannot participate in upcoming, past, or already participated tournaments.
@@ -38,7 +32,7 @@ View Score: After completing a quiz tournament, players can view their score out
 
 Like/Unlike Tournaments: Players can like or unlike quiz tournaments to show their appreciation.
 
-Technologies Used
+### Technologies Used
 
 OpenTDB API: Used to dynamically fetch quiz questions for tournaments.
 Retrofit/Volley: Used for network requests to fetch quiz questions from the OpenTDB API.
@@ -47,10 +41,18 @@ Firebase Realtime Database: Used to store and retrieve tournament data.
 Android SDK: Used for app development.
 Getting Started
 
-To get started with the Quiz Tournament App, follow these steps:
+### To get started with the Quiz Tournament App, follow these steps:
 
 Clone the repository to your local machine.
 Open the project in Android Studio.
 Build and run the project on your Android device or emulator.
 Sign up as either an Admin or a Player user.
 Enjoy creating, managing, and participating in quiz tournaments!
+
+
+![Home](screenshots/img1.png) []
+![Home](screenshots/img2.png) []
+![Home](screenshots/img3.png) []
+![Home](screenshots/img4.png) []
+
+
